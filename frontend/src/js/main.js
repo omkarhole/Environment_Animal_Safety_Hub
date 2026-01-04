@@ -1229,3 +1229,43 @@ function getBotReply(msg) {
   return "That's interesting 🤔 Try asking about climate, trees, plastic, or water.";
 }
 
+
+function updateEarth(score) {
+  const earth = document.getElementById("earth");
+  const text = document.getElementById("earthText");
+  const sun = document.querySelector(".sun-rays");
+  const rain = document.querySelector(".rain");
+  const birds = document.getElementById("birdsSound");
+  const heart = document.getElementById("heartSound");
+
+  earth.className = "earth";
+  sun.style.opacity = 0;
+  rain.style.opacity = 0;
+
+  birds.pause();
+  heart.pause();
+  birds.currentTime = 0;
+  heart.currentTime = 0;
+
+  if (score >= 60) {
+    earth.classList.add("happy");
+    sun.style.opacity = 1;
+    birds.play();
+    text.innerText = "Earth is happy and thriving 🌱";
+  }
+  else if (score >= 20) {
+    earth.classList.add("sad");
+    rain.style.opacity = 1;
+    text.innerText = "Earth is sad... needs care 💧";
+  }
+  else {
+    earth.classList.add("critical");
+    rain.style.opacity = 1;
+    heart.play();
+    text.innerText = "Earth is critical! Act now 🚨";
+  }
+}
+
+/* Example auto-call */
+updateEarth(75);
+
