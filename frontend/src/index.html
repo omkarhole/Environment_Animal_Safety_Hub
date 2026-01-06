@@ -512,6 +512,107 @@
     <audio id="heartSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_8e9b5c07b3.mp3"></audio>
   </section>
 
+  <section class="quiz-section" id="climate-quiz">
+  <h2 class="quiz-title">🌍 Climate Quiz Battle ⚔️</h2>
+  <p class="quiz-subtitle">Answer fast. Build combos. Beat the AI.</p>
+
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <div>⏱️ <span id="timer">10</span>s</div>
+      <div>🔥 Combo: <span id="combo">0</span></div>
+      <div>⭐ Score: <span id="score">0</span></div>
+    </div>
+
+    <h3 id="question">Loading...</h3>
+
+    <div class="options">
+      <button class="option">A</button>
+      <button class="option">B</button>
+      <button class="option">C</button>
+      <button class="option">D</button>
+    </div>
+
+    <p class="ai-status">🤖 AI: <span id="ai-result">Thinking...</span></p>
+
+    <button class="next-btn" id="nextBtn">Next ➜</button>
+  </div>
+</section>
+
+<section class="explore-wildlife" id="explore-wildlife">
+  <h2 class="section-title">🌿 Explore Wildlife Conservation</h2>
+  <p class="section-subtitle">
+    Learn how zoos, sanctuaries, and national parks protect wildlife and maintain Earth’s balance.
+  </p>
+
+  <!-- Filters -->
+  <div class="wildlife-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="zoo">Zoos</button>
+    <button class="filter-btn" data-filter="sanctuary">Sanctuaries</button>
+    <button class="filter-btn" data-filter="park">National Parks</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="wildlife-grid">
+    <!-- Zoo -->
+    <div class="wildlife-card zoo">
+      <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d">
+      <h3>Modern Zoos</h3>
+      <p class="short-text">
+        Ethical centers focused on conservation and education.
+      </p>
+
+      <div class="extra-info">
+        <ul>
+          <li>🧬 Breeding endangered species</li>
+          <li>📚 Wildlife education programs</li>
+          <li>🩺 Veterinary care & rescue</li>
+        </ul>
+      </div>
+
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <!-- Sanctuary -->
+    <div class="wildlife-card sanctuary">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+      <h3>Wildlife Sanctuaries</h3>
+      <p class="short-text">
+        Safe havens where animals live freely in nature.
+      </p>
+
+      <div class="extra-info">
+        <ul>
+          <li>🐾 Rescues injured animals</li>
+          <li>🌿 Natural, open habitats</li>
+          <li>🚫 No entertainment or cages</li>
+        </ul>
+      </div>
+
+      <button class="learn-btn">Learn More</button>
+    </div>
+
+    <!-- National Park -->
+    <div class="wildlife-card park">
+      <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2">
+      <h3>National Parks</h3>
+      <p class="short-text">
+        Protected ecosystems preserving biodiversity.
+      </p>
+
+      <div class="extra-info">
+        <ul>
+          <li>🌲 Forest & river conservation</li>
+          <li>🐘 Wildlife corridors</li>
+          <li>🛡️ Anti-poaching patrols</li>
+        </ul>
+      </div>
+
+      <button class="learn-btn">Learn More</button>
+    </div>
+  </div>
+</section>
+
 
   <!-- Environment Section -->
   <section id="environment" class="cards-section alt-bg">
@@ -1770,6 +1871,103 @@
   <script>
     (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "ws110ZzXAkEnbVsIy9g8d"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
   </script>
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const quizData = [
+    {
+      q: "Which gas causes global warming the most?",
+      options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+      answer: 1
+    },
+    {
+      q: "Which is a renewable energy source?",
+      options: ["Coal", "Solar", "Oil", "Gas"],
+      answer: 1
+    },
+    {
+      q: "Main cause of deforestation?",
+      options: ["Recycling", "Tree planting", "Agriculture", "Rain"],
+      answer: 2
+    }
+  ];
+
+  let index = 0, score = 0, combo = 0, time = 10, timer;
+
+  const question = document.getElementById("question");
+  const options = document.querySelectorAll(".option");
+  const scoreEl = document.getElementById("score");
+  const comboEl = document.getElementById("combo");
+  const timerEl = document.getElementById("timer");
+  const aiResult = document.getElementById("ai-result");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function loadQuestion() {
+    clearInterval(timer);
+    time = 10;
+    timerEl.textContent = time;
+
+    const q = quizData[index];
+    question.textContent = q.q;
+
+    options.forEach((btn, i) => {
+      btn.textContent = q.options[i];
+      btn.className = "option";
+      btn.onclick = () => selectAnswer(i);
+    });
+
+    aiResult.textContent = "Thinking...";
+    startTimer();
+  }
+
+  function startTimer() {
+    timer = setInterval(() => {
+      time--;
+      timerEl.textContent = time;
+      if (time === 0) {
+        clearInterval(timer);
+        combo = 0;
+        comboEl.textContent = combo;
+        aiTurn();
+      }
+    }, 1000);
+  }
+
+  function selectAnswer(i) {
+    clearInterval(timer);
+    const correct = quizData[index].answer;
+
+    if (i === correct) {
+      options[i].classList.add("correct");
+      score += 10 + combo * 5;
+      combo++;
+    } else {
+      options[i].classList.add("wrong");
+      options[correct].classList.add("correct");
+      combo = 0;
+    }
+
+    scoreEl.textContent = score;
+    comboEl.textContent = combo;
+    aiTurn();
+  }
+
+  function aiTurn() {
+    aiResult.textContent = Math.random() > 0.5
+      ? "AI answered correctly 🤖✔️"
+      : "AI answered wrong 🤖❌";
+  }
+
+  nextBtn.onclick = () => {
+    index = (index + 1) % quizData.length;
+    loadQuestion();
+  };
+
+  loadQuestion();
+});
+</script>
 
 </body>
 
