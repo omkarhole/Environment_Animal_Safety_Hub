@@ -289,9 +289,9 @@ document.getElementById('backBtn').addEventListener('click', () => {
         // Simple and effective browser confirmation
         const quit = confirm("Do you want to quit the game? Your current score will be lost!");
         if (quit) {
-            window.location.href = "../index.html"; // Home page ka sahi path
+            window.location.href = "../../index.html"; // Home page ka sahi path
         }
     } else {
-        window.location.href = "../index.html";
+        window.location.href = "../../index.html";
     }
 });
