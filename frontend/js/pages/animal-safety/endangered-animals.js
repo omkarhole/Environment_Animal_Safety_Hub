@@ -97,7 +97,7 @@ function searchAnimals() {
 }
 
 // Filter by conservation status
-function filterByStatus(status) {
+function filterByStatus(status, event) {
     currentFilter = status;
 
     // Update active filter button
