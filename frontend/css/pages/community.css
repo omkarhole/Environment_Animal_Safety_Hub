@@ -341,9 +341,28 @@ body.page.dashboard {
   border: 2px solid var(--primary-color);
 }
 
+.post-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .post-header .username {
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.post-timestamp {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-timestamp i {
+  font-size: 0.7rem;
 }
 
 /* Post Image */

@@ -33,7 +33,10 @@ function loadPost(count = 3) {
     postCard.innerHTML = `
       <div class="post-header">
         <img src="${post.avatar}" alt="${post.username}">
-        <span class="username">${post.username}</span>
+        <div class="post-user-info">
+          <span class="username">${post.username}</span>
+          ${post.lastUpdated ? `<span class="post-timestamp"><i class="fa-regular fa-clock"></i> Last updated: ${post.lastUpdated}</span>` : ''}
+        </div>
       </div>
 
       <div class="post-image">
