@@ -1935,10 +1935,6 @@ body.dark-mode .status-badge.flagged {
 
 /* =====================
    FORUMS STYLES
-===================== */
-
-/* Forum Header */
-.forum-header {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
   padding: 40px 30px;

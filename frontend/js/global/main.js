@@ -60,3 +60,57 @@ function updatePageViewCounter() {
 
 // Initialize page view counter on page load
 updatePageViewCounter();
+
+// ==========================================
+// Service Worker Registration for PWA (Issue #736)
+// ==========================================
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker registered successfully:', registration);
+      })
+      .catch(error => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
+
+// ==========================================
+// Push Notifications for Eco-Tips (Issue #736)
+// ==========================================
+
+// Request notification permission and show a sample eco-tip
+function requestNotificationPermission() {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted');
+        // Show a sample eco-tip notification
+        showEcoTipNotification();
+      } else {
+        console.log('Notification permission denied');
+      }
+    });
+  }
+}
+
+// Function to show eco-tip notification
+function showEcoTipNotification() {
+  if (Notification.permission === 'granted') {
+    const notification = new Notification('EcoLife Tip', {
+      body: 'Remember to reduce, reuse, and recycle to protect our planet!',
+      icon: '/assets/images/others/Logo.png'
+    });
+
+    // Close notification after 5 seconds
+    setTimeout(() => {
+      notification.close();
+    }, 5000);
+  }
+}
+
+// Request permission on page load (you can trigger this on user interaction for better UX)
+setTimeout(requestNotificationPermission, 3000); // Delay to avoid being too intrusive
