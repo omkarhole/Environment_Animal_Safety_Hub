@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Community Blog Management System
  *
  * Handles blog post display, filtering, searching, creation, and modal interactions
@@ -23,7 +23,9 @@
             author: "User12",
             category: "environment",
             img: "https://picsum.photos/seed/blog1/300/200",
-            content: "Eco gardening promotes natural growing methods using compost, native plants, and water conservation to protect the environment and improve soil health."
+            content: "Eco gardening promotes natural growing methods using compost, native plants, and water conservation to protect the environment and improve soil health.",
+            popularity: 180,
+            createdAt: "2026-01-20"
         },
         {
             id: 2,
@@ -31,7 +33,9 @@
             author: "User34",
             category: "diy",
             img: "https://picsum.photos/seed/blog2/300/200",
-            content: "Plastic-free living focuses on reducing single-use plastics by switching to reusable products like cloth bags, metal bottles, and glass containers."
+            content: "Plastic-free living focuses on reducing single-use plastics by switching to reusable products like cloth bags, metal bottles, and glass containers.",
+            popularity: 165,
+            createdAt: "2026-01-18"
         },
         {
             id: 3,
@@ -39,7 +43,9 @@
             author: "User56",
             category: "energy",
             img: "https://picsum.photos/seed/blog3/300/200",
-            content: "Solar energy is a clean and renewable power source. Using solar panels and solar-powered devices helps reduce electricity bills and carbon emissions."
+            content: "Solar energy is a clean and renewable power source. Using solar panels and solar-powered devices helps reduce electricity bills and carbon emissions.",
+            popularity: 140,
+            createdAt: "2026-01-15"
         },
         {
             id: 4,
@@ -47,7 +53,9 @@
             author: "User78",
             category: "technology",
             img: "https://picsum.photos/seed/blog4/300/200",
-            content: "Technology helps protect nature through tools like wildlife tracking, environmental sensors, and data-driven conservation efforts."
+            content: "Technology helps protect nature through tools like wildlife tracking, environmental sensors, and data-driven conservation efforts.",
+            popularity: 150,
+            createdAt: "2026-01-14"
         },
         {
             id: 5,
@@ -55,7 +63,9 @@
             author: "User90",
             category: "environment",
             img: "https://picsum.photos/seed/blog5/300/200",
-            content: "Home composting turns kitchen waste into organic fertilizer, reducing landfill waste and improving soil quality naturally."
+            content: "Home composting turns kitchen waste into organic fertilizer, reducing landfill waste and improving soil quality naturally.",
+            popularity: 132,
+            createdAt: "2026-01-12"
         },
         {
             id: 6,
@@ -63,7 +73,9 @@
             author: "User21",
             category: "diy",
             img: "https://picsum.photos/seed/blog6/300/200",
-            content: "DIY birdhouses provide safe shelters for birds and support biodiversity. They are simple projects made using recycled materials."
+            content: "DIY birdhouses provide safe shelters for birds and support biodiversity. They are simple projects made using recycled materials.",
+            popularity: 125,
+            createdAt: "2026-01-11"
         },
         {
             id: 7,
@@ -71,7 +83,9 @@
             author: "User33",
             category: "energy",
             img: "https://picsum.photos/seed/blog7/300/200",
-            content: "Energy-efficient homes use insulation, LED lighting, and smart appliances to reduce power usage and save money."
+            content: "Energy-efficient homes use insulation, LED lighting, and smart appliances to reduce power usage and save money.",
+            popularity: 160,
+            createdAt: "2026-01-10"
         },
         {
             id: 8,
@@ -79,7 +93,9 @@
             author: "User45",
             category: "environment",
             img: "https://picsum.photos/seed/blog8/300/200",
-            content: "Urban gardening uses balconies, rooftops, and small spaces to grow plants using containers and vertical gardening techniques."
+            content: "Urban gardening uses balconies, rooftops, and small spaces to grow plants using containers and vertical gardening techniques.",
+            popularity: 118,
+            createdAt: "2026-01-09"
         },
         {
             id: 9,
@@ -87,7 +103,9 @@
             author: "User11",
             category: "environment",
             img: "https://picsum.photos/seed/blog9/300/200",
-            content: "Rainwater harvesting collects rainwater for reuse, reducing water bills and conserving groundwater resources."
+            content: "Rainwater harvesting collects rainwater for reuse, reducing water bills and conserving groundwater resources.",
+            popularity: 130,
+            createdAt: "2026-01-08"
         },
         {
             id: 10,
@@ -95,7 +113,9 @@
             author: "User22",
             category: "diy",
             img: "https://picsum.photos/seed/blog10/300/200",
-            content: "Minimalist decor focuses on simplicity, functionality, and natural materials to create calm and eco-friendly spaces."
+            content: "Minimalist decor focuses on simplicity, functionality, and natural materials to create calm and eco-friendly spaces.",
+            popularity: 110,
+            createdAt: "2026-01-07"
         },
         {
             id: 11,
@@ -103,7 +123,9 @@
             author: "User35",
             category: "energy",
             img: "https://picsum.photos/seed/blog11/300/200",
-            content: "Wind energy uses turbines to convert wind into electricity and is one of the most sustainable power sources."
+            content: "Wind energy uses turbines to convert wind into electricity and is one of the most sustainable power sources.",
+            popularity: 145,
+            createdAt: "2026-01-06"
         },
         {
             id: 12,
@@ -111,7 +133,9 @@
             author: "User46",
             category: "technology",
             img: "https://picsum.photos/seed/blog12/300/200",
-            content: "Smart irrigation systems optimize water usage using sensors and weather data, reducing waste and improving plant growth."
+            content: "Smart irrigation systems optimize water usage using sensors and weather data, reducing waste and improving plant growth.",
+            popularity: 100,
+            createdAt: "2026-01-05"
         },
         {
             id: 13,
@@ -119,7 +143,9 @@
             author: "User57",
             category: "diy",
             img: "https://picsum.photos/seed/blog13/300/200",
-            content: "Plant-based diets rely on vegetables, grains, and legumes, offering health benefits and reducing environmental impact."
+            content: "Plant-based diets rely on vegetables, grains, and legumes, offering health benefits and reducing environmental impact.",
+            popularity: 112,
+            createdAt: "2026-01-04"
         },
         {
             id: 14,
@@ -127,7 +153,9 @@
             author: "User68",
             category: "environment",
             img: "https://picsum.photos/seed/blog14/300/200",
-            content: "Green roofs reduce heat, manage rainwater, improve air quality, and create habitats for birds and insects."
+            content: "Green roofs reduce heat, manage rainwater, improve air quality, and create habitats for birds and insects.",
+            popularity: 98,
+            createdAt: "2026-01-03"
         },
         {
             id: 15,
@@ -135,7 +163,9 @@
             author: "User79",
             category: "energy",
             img: "https://picsum.photos/seed/blog15/300/200",
-            content: "Maintaining solar panels by cleaning and inspections ensures better efficiency and longer lifespan."
+            content: "Maintaining solar panels by cleaning and inspections ensures better efficiency and longer lifespan.",
+            popularity: 120,
+            createdAt: "2026-01-02"
         },
         {
             id: 16,
@@ -143,7 +173,9 @@
             author: "User80",
             category: "technology",
             img: "https://picsum.photos/seed/blog16/300/200",
-            content: "Home automation controls lighting, temperature, and devices automatically to reduce energy usage."
+            content: "Home automation controls lighting, temperature, and devices automatically to reduce energy usage.",
+            popularity: 108,
+            createdAt: "2026-01-01"
         },
         {
             id: 17,
@@ -151,7 +183,9 @@
             author: "User81",
             category: "diy",
             img: "https://picsum.photos/seed/blog17/300/200",
-            content: "Recycled crafts transform waste materials into creative and useful products, helping reduce pollution."
+            content: "Recycled crafts transform waste materials into creative and useful products, helping reduce pollution.",
+            popularity: 90,
+            createdAt: "2025-12-30"
         },
         {
             id: 18,
@@ -159,7 +193,9 @@
             author: "User82",
             category: "environment",
             img: "https://picsum.photos/seed/blog18/300/200",
-            content: "Organic vegetable gardening avoids chemicals and promotes healthy soil for safer and nutritious food."
+            content: "Organic vegetable gardening avoids chemicals and promotes healthy soil for safer and nutritious food.",
+            popularity: 105,
+            createdAt: "2025-12-28"
         },
         {
             id: 19,
@@ -167,7 +203,9 @@
             author: "User83",
             category: "energy",
             img: "https://picsum.photos/seed/blog19/300/200",
-            content: "LED lighting consumes less power, lasts longer, and reduces electricity bills compared to traditional bulbs."
+            content: "LED lighting consumes less power, lasts longer, and reduces electricity bills compared to traditional bulbs.",
+            popularity: 115,
+            createdAt: "2025-12-26"
         },
         {
             id: 20,
@@ -175,7 +213,9 @@
             author: "User84",
             category: "technology",
             img: "https://picsum.photos/seed/blog20/300/200",
-            content: "Eco-friendly tech gadgets use less energy and are designed with sustainability in mind."
+            content: "Eco-friendly tech gadgets use less energy and are designed with sustainability in mind.",
+            popularity: 94,
+            createdAt: "2025-12-24"
         },
         {
             id: 21,
@@ -183,7 +223,9 @@
             author: "User85",
             category: "diy",
             img: "https://picsum.photos/seed/blog21/300/200",
-            content: "DIY herb gardens are easy to build at home and provide fresh herbs while promoting green living."
+            content: "DIY herb gardens are easy to build at home and provide fresh herbs while promoting green living.",
+            popularity: 102,
+            createdAt: "2025-12-22"
         },
         {
             id: 22,
@@ -191,7 +233,9 @@
             author: "User86",
             category: "environment",
             img: "https://picsum.photos/seed/blog22/300/200",
-            content: "Kitchen waste like fruit peels and leftovers can be composted to reduce garbage and enrich soil."
+            content: "Kitchen waste like fruit peels and leftovers can be composted to reduce garbage and enrich soil.",
+            popularity: 88,
+            createdAt: "2025-12-20"
         },
         {
             id: 23,
@@ -199,7 +243,9 @@
             author: "User87",
             category: "energy",
             img: "https://picsum.photos/seed/blog23/300/200",
-            content: "Geothermal energy uses heat from the earth to generate power and is a reliable renewable source."
+            content: "Geothermal energy uses heat from the earth to generate power and is a reliable renewable source.",
+            popularity: 96,
+            createdAt: "2025-12-18"
         },
         {
             id: 24,
@@ -207,7 +253,9 @@
             author: "User88",
             category: "technology",
             img: "https://picsum.photos/seed/blog24/300/200",
-            content: "Urban farming technology helps grow food efficiently using hydroponics, sensors, and automation."
+            content: "Urban farming technology helps grow food efficiently using hydroponics, sensors, and automation.",
+            popularity: 92,
+            createdAt: "2025-12-16"
         },
         {
             id: 25,
@@ -215,7 +263,9 @@
             author: "User89",
             category: "diy",
             img: "https://picsum.photos/seed/blog25/300/200",
-            content: "Upcycling furniture gives old items new life, reducing waste and adding unique style."
+            content: "Upcycling furniture gives old items new life, reducing waste and adding unique style.",
+            popularity: 85,
+            createdAt: "2025-12-14"
         },
         {
             id: 26,
@@ -223,7 +273,9 @@
             author: "User90",
             category: "environment",
             img: "https://picsum.photos/seed/blog26/300/200",
-            content: "Improving indoor air quality involves plants, ventilation, and reducing chemical pollutants."
+            content: "Improving indoor air quality involves plants, ventilation, and reducing chemical pollutants.",
+            popularity: 80,
+            createdAt: "2025-12-12"
         },
         {
             id: 27,
@@ -231,7 +283,9 @@
             author: "User91",
             category: "energy",
             img: "https://picsum.photos/seed/blog27/300/200",
-            content: "Energy Star appliances consume less electricity and help save energy without losing performance."
+            content: "Energy Star appliances consume less electricity and help save energy without losing performance.",
+            popularity: 84,
+            createdAt: "2025-12-10"
         },
         {
             id: 28,
@@ -239,7 +293,9 @@
             author: "User92",
             category: "technology",
             img: "https://picsum.photos/seed/blog28/300/200",
-            content: "Wearable eco-tech includes smart devices designed to be energy-efficient and environmentally friendly."
+            content: "Wearable eco-tech includes smart devices designed to be energy-efficient and environmentally friendly.",
+            popularity: 76,
+            createdAt: "2025-12-08"
         },
         {
             id: 29,
@@ -247,9 +303,23 @@
             author: "User93",
             category: "diy",
             img: "https://picsum.photos/seed/blog29/300/200",
-            content: "DIY natural cleaning products use simple ingredients like vinegar, baking soda, and lemon to keep homes clean without harmful chemicals."
+            content: "DIY natural cleaning products use simple ingredients like vinegar, baking soda, and lemon to keep homes clean without harmful chemicals.",
+            popularity: 78,
+            createdAt: "2025-12-06"
         }
     ];
+
+    // Normalize base data with fallbacks
+    blogsData.forEach((blog, index) => {
+        if (!blog.createdAt) {
+            blog.createdAt = new Date(Date.now() - index * 86400000).toISOString();
+        }
+        if (typeof blog.popularity !== 'number') {
+            blog.popularity = 50 - index;
+        }
+    });
+
+    let currentCommunitySort = (window.SortControl && window.SortControl.getSortPreference()) || 'newest';
 
     /**
      * Renders blog posts based on filter and search criteria
@@ -265,6 +335,8 @@
             const matchesSearch = blog.title.toLowerCase().includes(search.toLowerCase());
             return matchesFilter && matchesSearch;
         });
+
+        filteredBlogs = sortBlogList(filteredBlogs);
 
         if (filteredBlogs.length === 0) {
             container.innerHTML = "<p class='text-sm' style='text-align:center;width:100%'>No blogs found</p>";
@@ -359,7 +431,8 @@
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderBlogs(btn.dataset.filter, document.querySelector('.search-blog')?.value || '');
+                const searchValue = document.querySelector('.top-bar .input')?.value || '';
+                renderBlogs(btn.dataset.filter, searchValue);
             });
         });
 
@@ -367,17 +440,8 @@
         const searchInput = document.querySelector('.top-bar .input');
         searchInput?.addEventListener('input', () => {
             const searchValue = searchInput.value.toLowerCase().trim();
-            // Get all dynamically created blog cards each time user types
-            const blogCards = document.querySelectorAll('.blog-card');
-            blogCards.forEach(card => {
-                const blogTitle = card.querySelector('.blog-title').textContent.toLowerCase();
-                const blogAuthor = card.querySelector('.blog-author').textContent.toLowerCase();
-                if (blogTitle.includes(searchValue) || blogAuthor.includes(searchValue)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            renderBlogs(activeFilter, searchValue);
         });
 
         // Create blog modal
@@ -411,7 +475,9 @@
                         title,
                         author: 'You',
                         category,
-                        img: imgURL
+                        img: imgURL,
+                        popularity: 0,
+                        createdAt: new Date().toISOString()
                     };
                     blogsData.unshift(newBlog); // add to top
                     renderBlogs(document.querySelector('.filter-btn.active').dataset.filter, searchInput.value);
@@ -445,6 +511,41 @@
                 }
             });
         });
+
+        initSortDropdown();
+    }
+
+    /**
+     * Sort the blog list based on current preference
+     * @param {Array<Object>} list
+     * @returns {Array<Object>}
+     */
+    function sortBlogList(list) {
+        return list.slice().sort((a, b) => {
+            if (currentCommunitySort === 'newest') {
+                return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            }
+            if (currentCommunitySort === 'popular') {
+                return (b.popularity || 0) - (a.popularity || 0);
+            }
+            return (a.title || '').localeCompare(b.title || '');
+        });
+    }
+
+    /**
+     * Initialize sorting dropdown for community blogs
+     */
+    function initSortDropdown() {
+        if (!window.SortControl) return;
+        const container = document.getElementById('community-sorter');
+        if (!container) return;
+
+        const dropdown = window.SortControl.createSortDropdown((value) => {
+            currentCommunitySort = value;
+            renderBlogs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all',
+                document.querySelector('.top-bar .input')?.value || '');
+        });
+        container.appendChild(dropdown);
     }
 
     // Initialize when DOM is loaded

@@ -7,6 +7,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/global/utilities.css" />
   <link rel="stylesheet" href="../../css/components/navbar.css" />
+  <style>
+    .sort-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+    .sort-control select {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #d0d7de;
+      background: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body class="page dashboard">
 
@@ -47,6 +63,7 @@
   <!-- Top Bar -->
   <div class="top-bar row">
       <input class="input search-box" placeholder="Search blogs...">
+      <div id="community-sorter" class="sort-control"></div>
       <div class="top-actions">
         <i class="fa-regular fa-bell icon-btn"></i>
         <i class="fa-solid fa-plus icon-btn create-blog-btn"></i>
@@ -116,6 +133,7 @@
 
 <script src="../../js/components/component-loader.js"></script>
   <script src="../../js/pages/community/theme.js"></script>
+  <script src="../../js/global/sort-control.js"></script>
   <script src="../../js/pages/community/blog.js"></script>
     <script src="../../js/components/navbar-loader.js"></script>
 </body>

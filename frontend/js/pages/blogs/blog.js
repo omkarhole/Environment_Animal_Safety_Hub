@@ -1,4 +1,4 @@
-﻿/**
+/**
  * EcoLife Blog Page
  *
  * Interactive blog platform with dark mode toggle, category filtering,
@@ -27,12 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize all components
     initThemeToggle();
     initCategoryFiltering();
+    initArticleSort();
     initNewsletterForm();
     initBlogCardInteractions();
     initScrollAnimations();
+    sortBlogCards();
 
     console.log('EcoLife Blog Page Loaded');
 });
+
+// Shared sort preference across pages
+let currentArticleSort = (window.SortControl && window.SortControl.getSortPreference()) || 'newest';
 
 // ========== THEME TOGGLE SYSTEM ==========
 
@@ -135,6 +140,42 @@ function filterBlogCards(category, blogCards) {
             card.style.display = 'none';
         }
     });
+    sortBlogCards();
+}
+
+/**
+ * Initialize sort dropdown for articles
+ */
+function initArticleSort() {
+    if (!window.SortControl) return;
+    const container = document.getElementById('articles-sorter');
+    if (!container) return;
+
+    const dropdown = window.SortControl.createSortDropdown((value) => {
+        currentArticleSort = value;
+        sortBlogCards();
+    });
+    container.appendChild(dropdown);
+}
+
+/**
+ * Apply sorting to visible blog cards
+ */
+function sortBlogCards() {
+    if (!window.SortControl) return;
+    const container = document.querySelector('main.container');
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll('.blog-card'));
+    const mapped = cards.map(card => ({
+        el: card,
+        title: card.dataset.sortTitle || card.querySelector('h3')?.textContent?.trim() || '',
+        date: card.dataset.sortDate,
+        popularity: Number(card.dataset.sortPopularity || 0)
+    }));
+
+    const sorted = window.SortControl.sortItems(mapped, currentArticleSort);
+    sorted.forEach(({ el }) => container.appendChild(el));
 }
 
 // ========== NEWSLETTER SYSTEM ==========
