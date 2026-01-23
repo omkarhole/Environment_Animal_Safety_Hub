@@ -2828,3 +2828,28 @@ img {
 /* ===========================================
    END OF STYLESHEET
    =========================================== */
+
+
+
+   /* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container,
+  .card,
+  section {
+    width: 100%;
+    padding: 12px;
+  }
+
+  h1, h2, h3 {
+    text-align: center;
+  }
+}
