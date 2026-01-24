@@ -81,6 +81,45 @@
 
     /* For mobile */
     @media (max-width: 768px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopt Pets | EcoLife - Give a Home, Save a Life</title>
+    <link rel="icon" type="image/png" href="/envirnoment-logo.png">
+    <meta
+      name="description"
+      content="Find your perfect furry companion. Browse adoptable pets and give them a loving forever home."
+    />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../css/global/variables.css" />
+    <link rel="stylesheet" href="../../css/global/utilities.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/components/navbar.css" />
+    <link rel="stylesheet" href="../../css/components/footer.css" />
+    <link rel="stylesheet" href="../../css/pages/animal-safety/adoption.css" />
+    <link rel="stylesheet" href="../../css/components/scrollBar.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    
+    <!-- Inline style for theme toggle -->
+    <style>
+      /* Theme toggle button styles */
       #themeToggle {
         top: auto;
         bottom: 20px;
@@ -1558,7 +1597,7 @@
     (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "ws110ZzXAkEnbVsIy9g8d"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
   </script>
   <script src="/frontend/js/components/footer-loader.js"></script>
-
+<script src="../../js/components/component-loader.js"></script>
   <script src="../../js/components/navbar-loader.js"></script>
 </body>
 
