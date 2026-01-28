@@ -925,11 +925,25 @@ body {
 }
 
 .card-front {
-  background: linear-gradient(135deg, #c54242 0%, #ff943c 100%);
+  background: linear-gradient(135deg, #e65100 0%, #f57c00 100%);
+  /* Deep Orange */
+  position: relative;
+}
+
+.card-front::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
 }
 
 .card-back {
-  background: linear-gradient(135deg, #19551c 0%, #41cd48 100%);
+  background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);
+  /* Green */
   transform: rotateY(180deg);
 }
 
@@ -953,13 +967,14 @@ body {
 }
 
 .myth-card h3 {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  opacity: 0.9;
-  margin-bottom: 8px;
-  color: white;
+  letter-spacing: 3px;
+  font-weight: 800;
+  opacity: 0.8;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .myth-card p {
@@ -2926,4 +2941,3 @@ img {
     transform: translateY(6px);
   }
 }
-
