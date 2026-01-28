@@ -9,7 +9,25 @@
   <link rel="stylesheet" href="css/global/theme.css" />
   <title>EcoLife | Protect Our Planet & Animals</title>
   <meta name="description"
-    content="Join EcoLife to protect animals, save the environment, and create a greener future for all." />
+    content="Join EcoLife to protect animals, save the environment, and create a greener future for all. Access tips, guides, and community features offline." />
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#22c55e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="EcoLife" />
+  <meta name="application-name" content="EcoLife" />
+  <meta name="msapplication-TileColor" content="#0d1b0f" />
+  <meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/icon-192x192.png" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -51,12 +69,21 @@
   <link rel="stylesheet" href="css/components/sections.css" />
   <link rel="stylesheet" href="css/components/scrollBar.css" />
   <link rel="stylesheet" href="css/components/modal.css" />
+  <link rel="stylesheet" href="css/components/crisis-alert.css" />
+  <link rel="stylesheet" href="css/components/eco-assistant.css" />
+  <link rel="stylesheet" href="css/components/responsive-images.css" />
+  <link rel="stylesheet" href="css/components/image-loading.css" />
+  <link rel="stylesheet" href="css/components/form-validation.css" />
+  <!-- Interactive Elements -->
+  <link rel="stylesheet" href="css/components/interactive-elements.css" />
+  <link rel="stylesheet" href="css/components/donation.css" />
+  <link rel="stylesheet" href="css/components/noise-crisis-alert.css" />
   <!-- Accessibility Styles -->
   <link rel="stylesheet" href="css/global/accessibility.css" />
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Optimized -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
     rel="stylesheet" />
 
   <!-- Font Awesome -->
@@ -65,6 +92,166 @@
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/pages/home.css" />
+
+  <!-- PWA Styles -->
+  <link rel="stylesheet" href="css/pwa.css" />
+  
+
+  <style>
+  /* ===========================================
+   HERO TEXT COLOR FIXES FOR LIGHT THEME
+   =========================================== */
+
+  /* Fix for hero subtitle text in light theme */
+  .hero-subtitle {
+    color: #333333 !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Fix for search placeholder text in light theme */
+  .form-input::placeholder {
+    color: #666666 !important;
+  }
+
+  /* Fix for hero features text - URGENT FIX */
+  .hero-feature span {
+    color: #1b5e20 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Add background to hero features in light theme */
+  body:not([data-theme="dark"]) .hero-feature {
+    background: rgba(46, 125, 50, 0.1) !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(46, 125, 50, 0.2) !important;
+  }
+
+  /* Fix for live clock text in light theme */
+  body:not([data-theme="dark"]) .live-clock {
+    color: #222222 !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Fix for hero badge text in light theme */
+  body:not([data-theme="dark"]) .hero-badge {
+    color: #1b5e20 !important;
+    background: rgba(46, 125, 50, 0.1) !important;
+    border: 1px solid rgba(46, 125, 50, 0.2) !important;
+  }
+
+  /* Keep page view counter white text on colored background */
+  .page-view-counter {
+    color: white !important;
+    background: #00bcd4 !important;
+  }
+
+  /* Fix for search help text */
+  #search-help {
+    color: #555555 !important;
+  }
+
+  /* Fix for button descriptions */
+  #get-started-desc,
+  #learn-more-desc {
+    color: #444444 !important;
+  }
+
+  /* Force ALL text in hero section to be dark in light theme */
+  body:not([data-theme="dark"]) .hero-content {
+    --text-primary: #111111 !important;
+    --text-secondary: #333333 !important;
+  }
+
+  /* Override any white text in hero content */
+  body:not([data-theme="dark"]) .hero-content p,
+  body:not([data-theme="dark"]) .hero-content span:not(.gradient-text),
+  body:not([data-theme="dark"]) .hero-content div:not(.btn) {
+    color: #333333 !important;
+  }
+
+  /* Fix gradient text for light theme */
+  body:not([data-theme="dark"]) .gradient-text {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  /* Add subtle text shadow for better contrast */
+  body:not([data-theme="dark"]) .hero-subtitle {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Fix for hero features specifically - this should work */
+  .hero-features {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .hero-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-feature i {
+    color: var(--primary-color) !important;
+  }
+
+  /* Emergency override - force dark text for light theme */
+  :root:not([data-theme="dark"]) .hero-content * {
+    color: #222222 !important;
+  }
+
+  /* Specific fix for the text that says "Animal Rescue", "Plant Trees", "Reduce Waste" */
+  :root:not([data-theme="dark"]) .hero-feature span {
+    color: #1b5e20 !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) !important;
+  }
+</style>
+
+  <!-- Inline Interactive Elements Fix -->
+  <style>
+    /* Button Hover Effects */
+    .btn, button, .search-btn, .theme-toggle {
+      min-height: 44px;
+      min-width: 44px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
+    }
+    
+    .btn-secondary:hover {
+      background: #4CAF50 !important;
+      color: white !important;
+      transform: translateY(-2px) !important;
+    }
+    
+    .search-btn:hover {
+      background: #45a049 !important;
+      transform: scale(1.05) !important;
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(180deg) scale(1.1) !important;
+      background: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* Focus States */
+    .btn:focus, button:focus {
+      outline: 3px solid #4CAF50 !important;
+      outline-offset: 2px !important;
+    }
+  </style>
 </head>
 <!-- <button id="scrollBottomBtn" title="Scroll to Bottom">
   ⬇️ -->
@@ -72,33 +259,83 @@
 
 
 
-<body>
+<body class="crisis-alert-shown">
+
+  <!-- Noise Pollution Crisis Alert Banner - Level 3 Emergency -->
+  <div id="noise-crisis-alert-banner" class="noise-crisis-alert-banner" style="display: none;">
+    <div class="noise-crisis-alert-content">
+      <div class="noise-crisis-icon">
+        <i class="fas fa-volume-up noise-pulse"></i>
+      </div>
+      <div class="noise-crisis-text">
+        <div class="noise-crisis-level">LEVEL 3 EMERGENCY</div>
+        <div class="noise-crisis-title">Shipping Noise Pollution Crisis</div>
+        <div class="noise-crisis-action">Marine mammals face critical communication disruption</div>
+      </div>
+      <div class="noise-crisis-actions">
+        <a href="./pages/noise-pollution-shipping.html" class="noise-crisis-btn">
+          <span class="noise-emergency-dot"></span>
+          View Crisis Details
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <button class="noise-crisis-close" onclick="closeNoiseCrisisAlert()" aria-label="Close crisis alert">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <div id="cursor-container"></div>
 
+  <!-- Level 3 Crisis Alert Banner -->
+  <div class="crisis-alert-banner" id="crisisAlert">
+    <div class="crisis-alert-content">
+      <div class="crisis-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <div class="crisis-text">
+        <span class="crisis-level">🔥 LEVEL 3 CRISIS</span>
+        <span class="crisis-title">Fire Regime Shifts Causing Mass Wildlife Adaptation Failure</span>
+        <span class="crisis-action">400% increase in fire frequency - Immediate conservation action required</span>
+      </div>
+      <div class="crisis-actions">
+        <a href="pages/fire-regime-shifts.html" class="crisis-btn">
+          <i class="fas fa-fire"></i> View Crisis Details
+        </a>
+        <button class="crisis-close" onclick="closeCrisisAlert()" aria-label="Close crisis alert">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Skip Navigation Link for Keyboard Users -->
   <a href="#main-content" class="skip-link" id="skip-to-main">Skip to main content</a>
+  
+  <!-- Live Regions for Screen Readers -->
+  <div aria-live="polite" aria-atomic="true" class="live-region" id="status-messages"></div>
+  <div aria-live="assertive" aria-atomic="true" class="live-region" id="error-messages"></div>
 
   <!-- 🌤️ Background Animations -->
-  <div class="eco-sky">
+  <div class="eco-sky" aria-hidden="true">
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
     <div class="cloud cloud3"></div>
   </div>
 
   <!-- 🕊️ Birds -->
-  <div class="birds-layer"></div>
+  <div class="birds-layer" aria-hidden="true"></div>
 
   <!-- 🌧️ Rain -->
-  <div class="rain-layer"></div>
+  <div class="rain-layer" aria-hidden="true"></div>
 
   <!-- 🍃 Floating Leaves -->
-  <div class="leaves-layer"></div>
+  <div class="leaves-layer" aria-hidden="true"></div>
 
   <!-- 🌞 Sun Glow -->
-  <div class="sun-glow"></div>
+  <div class="sun-glow" aria-hidden="true"></div>
 
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
   <!-- Navbar -->
   <div id="navbar-container"></div>
   <!-- 🌗 Dark / Light Mode Toggle -->
@@ -106,9 +343,11 @@
   id="themeToggle" 
   class="theme-toggle" 
   aria-label="Toggle dark and light mode"
+  aria-pressed="false"
   title="Toggle Dark / Light Mode"
 >
-  <i class="fa-solid fa-moon"></i>
+  <i class="fa-solid fa-moon" aria-hidden="true"></i>
+  <span class="sr-only">Current theme: Light mode</span>
 </button>
 
 
@@ -116,9 +355,9 @@
   <main id="main-content" role="main">
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section" aria-label="Welcome to EcoLife">
+    <section id="home" class="hero-section" aria-labelledby="hero-title" role="banner">
       <!-- Animated Background Elements -->
-      <div class="hero-bg-elements">
+      <div class="hero-bg-elements" aria-hidden="true">
         <div class="floating-element leaf1">
           <i class="fa-solid fa-leaf"></i>
         </div>
@@ -142,18 +381,18 @@
       </div>
 
       <!-- Particle Effect -->
-      <div class="particles" id="particles"></div>
+      <div class="particles" id="particles" aria-hidden="true"></div>
 
       <div class="hero-container">
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-          <span class="hero-badge">
-            <i class="fa-solid fa-globe"></i> Join 50,000+ Eco Warriors
+          <span class="hero-badge" role="status">
+            <i class="fa-solid fa-globe" aria-hidden="true"></i> Join 50,000+ Eco Warriors
           </span>
           <!-- Page View Counter -->
-          <span class="hero-badge page-view-counter" id="page-view-counter">
-            <i class="fa-solid fa-eye"></i> <span id="page-view-count">0</span> Page Views
+          <span class="hero-badge page-view-counter" id="page-view-counter" role="status" aria-live="polite">
+            <i class="fa-solid fa-eye" aria-hidden="true"></i> <span id="page-view-count">0</span> Page Views
           </span>
-          <h1 class="hero-title">
+          <h1 class="hero-title" id="hero-title">
             Protect Our <span class="gradient-text">Planet</span> &
             <span class="gradient-text">Animals</span>
           </h1>
@@ -162,53 +401,65 @@
             create a sustainable future for generations to come.
           </p>
           <!-- Live Clock Display -->
-    <div class="live-clock" id="live-clock">
-      <i class="fas fa-clock"></i>
-      <span id="clock-time">00:00:00</span>
+    <div class="live-clock" id="live-clock" role="timer" aria-live="off">
+      <i class="fas fa-clock" aria-hidden="true"></i>
+      <span id="clock-time" aria-label="Current time">00:00:00</span>
     </div>
 
     <!-- Search Bar -->
-    <div class="search-container">
+    <div class="search-container" role="search">
       <form class="search-form" id="searchForm">
-        <input type="text" id="searchInput" placeholder="Search endangered animals, plant care, quizzes..." autocomplete="off">
-        <button type="submit" class="search-btn">
-          <i class="fas fa-search"></i>
+        <div class="form-group">
+          <label for="searchInput" class="sr-only">Search EcoLife content</label>
+          <input type="text" id="searchInput" class="form-input" placeholder="Search endangered animals, plant care, quizzes..." autocomplete="off" aria-describedby="search-help">
+          <div id="search-help" class="sr-only">Search for information about animals, plants, quizzes, and environmental topics</div>
+          <div class="error-message"></div>
+          <div class="success-message"></div>
+        </div>
+        <button type="submit" class="search-btn" aria-label="Search">
+          <i class="fas fa-search" aria-hidden="true"></i>
         </button>
       </form>
     </div>
-          <div class="hero-cta">
-            <a href="#about" class="btn btn-primary">
-              <i class="fa-solid fa-rocket"></i> Get Started
+          <div class="hero-cta" role="group" aria-label="Main actions">
+            <a href="#about" class="btn btn-primary" aria-describedby="get-started-desc">
+              <i class="fa-solid fa-rocket" aria-hidden="true"></i> Get Started
             </a>
-            <a href="#animal" class="btn btn-secondary">
-              <i class="fa-solid fa-play"></i> Learn More
+            <div id="get-started-desc" class="sr-only">Begin your journey to protect the environment and animals</div>
+            <a href="#animal" class="btn btn-secondary" aria-describedby="learn-more-desc">
+              <i class="fa-solid fa-play" aria-hidden="true"></i> Learn More
             </a>
+            <div id="learn-more-desc" class="sr-only">Discover more about animal protection and environmental conservation</div>
           </div>
 
-          <div class="hero-features">
-            <div class="hero-feature">
-              <i class="fa-solid fa-paw"></i>
+          <div class="hero-features" role="list" aria-label="Key features">
+            <div class="hero-feature" role="listitem">
+              <i class="fa-solid fa-paw" aria-hidden="true"></i>
               <span>Animal Rescue</span>
             </div>
-            <div class="hero-feature">
-              <i class="fa-solid fa-tree"></i>
+            <div class="hero-feature" role="listitem">
+              <i class="fa-solid fa-tree" aria-hidden="true"></i>
               <span>Plant Trees</span>
             </div>
-            <div class="hero-feature">
-              <i class="fa-solid fa-recycle"></i>
+            <div class="hero-feature" role="listitem">
+              <i class="fa-solid fa-recycle" aria-hidden="true"></i>
               <span>Reduce Waste</span>
             </div>
           </div>
         </div>
 
         <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-          <div class="hero-image-wrapper">
-            <img src="https://i.pinimg.com/736x/90/8e/da/908eda2e439e958f8a276a25d1a9cc6c.jpg" alt="Save Animals" />
-            <div class="hero-image-badge">
-              <i class="fa-solid fa-heart"></i>
-              <span>10K+ Animals Saved</span>
-            </div>
-          </div>
+<div class="hero-image-wrapper image-container aspect-16-9" style="width: 100%; height: 400px; overflow: hidden; border-radius: 20px;">
+  <img 
+    src="https://i.pinimg.com/736x/90/8e/da/908eda2e439e958f8a276a25d1a9cc6c.jpg"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+    alt="Rescued animals"
+  />
+  <div class="hero-image-badge">
+    <i class="fa-solid fa-heart"></i>
+    <span style="color: black;">10K+ Animals Saved</span>
+  </div>
+</div>
         </div>
       </div>
 
@@ -289,8 +540,9 @@
                 </div>
               </div>
               <div class="about-feature">
-                <div class="feature-icon">
-                  <i class="fa-solid fa-graduation-cap"></i>
+                <div class="feature-icon" style="background: none; width: 80px; height: 80px;">
+                  <img src="assets/images/3d/building_eco_school.png" alt="Education"
+                    style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <div class="feature-text">
                   <h4>Education & Awareness</h4>
@@ -321,12 +573,10 @@
       </p>
     </div>
 
-    <div class="services-grid">
-      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="service-card-inner">
-          <div class="service-card-front">
-            <div class="service-icon">
-              <i class="fa-solid fa-paw"></i>
+        <div class="services-grid">
+          <div class="service-card" data-tilt>
+            <div class="service-icon-3d">
+              <img src="assets/images/3d/building_animal_shelter.png" alt="Animal Rescue">
             </div>
             <h3>Animal Rescue</h3>
             <p>
@@ -342,11 +592,9 @@
         </div>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-card-inner">
-          <div class="service-card-front">
-            <div class="service-icon">
-              <i class="fa-solid fa-recycle"></i>
+          <div class="service-card" data-tilt>
+            <div class="service-icon-3d">
+              <img src="assets/images/3d/building_recycling_center.png" alt="Waste Management">
             </div>
             <h3>Waste Management</h3>
             <p>
@@ -362,31 +610,27 @@
         </div>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="service-card-inner">
-          <div class="service-card-front">
-            <div class="service-icon">
-              <i class="fa-solid fa-cloud-sun"></i>
+          <div class="service-card" data-tilt>
+            <div class="service-icon-3d">
+              <img src="assets/images/3d/building_green_energy.png" alt="Climate Action">
             </div>
-            <h3>Climate Action</h3>
+            <h3>Climate Action <span style="color: #ff0000; font-size: 0.8rem; font-weight: 900; text-shadow: 0 0 10px #ff0000;" class="crisis-urgent-text">[LEVEL 3 CRISIS]</span></h3>
             <p>
               Raising awareness about climate change and promoting sustainable
-              lifestyle choices.
+              lifestyle choices. <strong style="color: #ff4500; background: rgba(255,69,0,0.1); padding: 2px 6px; border-radius: 4px;">URGENT: Fire regime shifts causing wildlife adaptation failure.</strong>
             </p>
           </div>
           <div class="service-card-back">
-            <a href="javascript:void(0)" class="service-link open-modal-btn" data-id="climate-action">
-              Learn More <i class="fa-solid fa-arrow-right"></i>
+            <a href="pages/fire-regime-shifts.html" class="service-link" style="background: linear-gradient(45deg, #ff4500, #ff0000); color: white; font-weight: bold; text-shadow: 0 0 10px rgba(0,0,0,0.5);" title="View Level 3 Crisis Details">
+              🔥 Crisis Level 3 <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="service-card-inner">
-          <div class="service-card-front">
-            <div class="service-icon">
-              <i class="fa-solid fa-seedling"></i>
+          <div class="service-card" data-tilt>
+            <div class="service-icon-3d">
+              <img src="assets/images/3d/building_tree_park.png" alt="Tree Plantation">
             </div>
             <h3>Tree Plantation</h3>
             <p>
@@ -402,11 +646,9 @@
         </div>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="service-card-inner">
-          <div class="service-card-front">
-            <div class="service-icon">
-              <i class="fa-solid fa-phone"></i>
+          <div class="service-card" data-tilt>
+            <div class="service-icon-3d">
+              <img src="assets/images/3d/building_vet_clinic.png" alt="Emergency Help">
             </div>
             <h3>Emergency Wildlife Help</h3>
             <p>
@@ -425,6 +667,67 @@
   </div>
 </section>
 
+
+    <!-- Donation Section -->
+    <section class="donation-section" id="donation">
+        <div class="donation-container">
+            <div class="donation-header">
+                <span class="section-tag">
+                    <i class="fa-solid fa-heart"></i> Eco-Fund
+                </span>
+                <h2>Support Environmental Causes</h2>
+                <p>Help verified environmental NGOs, local shelters, and community-led green initiatives through our secure donation platform.</p>
+            </div>
+            
+            <div class="campaigns-grid" id="campaigns-container">
+                <!-- Campaigns will be rendered dynamically -->
+            </div>
+            
+            <div class="donation-form" id="donation-form-container">
+                <h3>Make a Donation</h3>
+                <form id="donation-form">
+                    <div class="form-group">
+                        <label for="donation-campaign">Select Campaign</label>
+                        <select id="donation-campaign" required>
+                            <option value="">Choose a campaign...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donation-amount">Donation Amount ($)</label>
+                        <div class="amount-buttons">
+                            <button type="button" class="amount-button" data-amount="10">$10</button>
+                            <button type="button" class="amount-button" data-amount="25">$25</button>
+                            <button type="button" class="amount-button" data-amount="50">$50</button>
+                            <button type="button" class="amount-button" data-amount="100">$100</button>
+                        </div>
+                        <input type="number" id="donation-amount" placeholder="Enter custom amount" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donor-name">Your Name (optional)</label>
+                        <input type="text" id="donor-name" placeholder="Enter your name for donor wall">
+                    </div>
+                    
+                    <button type="submit" class="donation-btn">
+                        <i class="fa-solid fa-heart"></i> Donate Securely
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="modal" id="donation-modal">
+            <div class="modal-content">
+                <span class="close-modal" id="close-donation-modal">&times;</span>
+                <div class="donation-success">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <h3>Thank You for Your Donation!</h3>
+                <p class="donation-thanks" id="donation-thanks">Your contribution makes a real difference!</p>
+                <p>Your donation helps protect our environment and support important causes.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- AI Chatbot
   <div class="chatbot-container">
@@ -458,7 +761,7 @@
         <div class="cards-grid">
           <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
             <div class="card-image">
-              <img src="https://i.pinimg.com/736x/24/5e/9a/245e9a9a9898728d21a978edd67b411b.jpg" alt="Adopt Pets" />
+              <img src="assets/images/3d/adopt_pets.png" alt="Adopt Pets" />
               <div class="card-overlay">
                 <span class="card-tag">Adoption</span>
               </div>
@@ -507,7 +810,7 @@
 
           <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
             <div class="card-image">
-              <img src="https://i.pinimg.com/1200x/e3/39/d3/e339d31da13cb49f1b8ecd1a240b26d1.jpg" alt="Feed Animals" />
+              <img src="assets/images/3d/feed_animals.png" alt="Feed Animals" />
               <div class="card-overlay">
                 <span class="card-tag">Feeding</span>
               </div>
@@ -847,47 +1150,62 @@
       </p>
     </div>
 
-    <div class="eco-challenges-grid">
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-droplet"></i>
-        <h3>Water a Plant</h3>
-        <p>Water at least one plant today.</p>
-        <button class="challenge-btn">Mark as Done</button>
-      </div>
+        <div class="eco-challenges-grid">
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_water_plant.png" alt="Water Plant">
+            </div>
+            <h3>Water a Plant</h3>
+            <p>Water at least one plant today.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
 
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-lightbulb"></i>
-        <h3>Save Electricity</h3>
-        <p>Turn off unused lights and fans.</p>
-        <button class="challenge-btn">Mark as Done</button>
-      </div>
 
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-dove"></i>
-        <h3>Feed Birds</h3>
-        <p>Place water or grains for birds.</p>
-        <button class="challenge-btn">Mark as Done</button>
-      </div>
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_save_energy.png" alt="Save Energy">
+            </div>
+            <h3>Save Electricity</h3>
+            <p>Turn off unused lights and fans.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
 
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-ban"></i>
-        <h3>Avoid Plastic</h3>
-        <p>Say no to single-use plastic today.</p>
-        <button class="challenge-btn">Mark as Done</button>
-      </div>
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_feed_birds.png" alt="Feed Birds">
+            </div>
+            <h3>Feed Birds</h3>
+            <p>Place water or grains for birds.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
 
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-tree"></i>
-        <h3>Plant a Sapling</h3>
-        <p>Plant or help plant a tree.</p>
-        <button class="challenge-btn">Mark as Done</button>
-      </div>
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_no_plastic.png" alt="Avoid Plastic">
+            </div>
+            <h3>Avoid Plastic</h3>
+            <p>Say no to single-use plastic today.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
 
-      <div class="eco-challenge-card">
-        <i class="fa-solid fa-broom"></i>
-        <h3>Clean Your Area</h3>
-        <p>Pick up litter near your home.</p>
-        <button class="challenge-btn">Mark as Done</button>
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_plant_tree.png" alt="Plant Tree">
+            </div>
+            <h3>Plant a Sapling</h3>
+            <p>Plant or help plant a tree.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
+
+          <div class="eco-challenge-card" data-tilt>
+            <div class="challenge-icon-3d">
+              <img src="assets/images/3d/icon_clean_trash.png" alt="Clean Area">
+            </div>
+            <h3>Clean Your Area</h3>
+            <p>Pick up litter near your home.</p>
+            <button class="challenge-btn">Mark as Done</button>
+          </div>
+        </div>
       </div>
 
       <!-- New Card 1 -->
@@ -959,11 +1277,10 @@
 
           <div class="plant-care-images" data-aos="fade-left">
             <div class="plant-img plant-img-1">
-              <img src="https://i.pinimg.com/736x/52/7a/cc/527accddb75efd9315c8d6afba2bba1d.jpg" alt="Gardening Tips" />
+              <img src="assets/images/3d/gardening_tips.png" alt="Gardening Tips" />
             </div>
             <div class="plant-img plant-img-2">
-              <img src="https://i.pinimg.com/736x/7b/07/7d/7b077d6b6f89cc8d0cbe15f85e9d3242.jpg"
-                alt="Community Gardens" />
+              <img src="assets/images/3d/community_gardens.png" alt="Community Gardens" />
             </div>
           </div>
         </div>
@@ -1023,44 +1340,39 @@
             </p>
 
             <div class="quiz-features">
-              <div class="quiz-feature">
-                <i class="fa-solid fa-gamepad"></i>
+              <div class="quiz-feature" data-tilt>
+                <div class="feature-icon-wrapper icon-game">
+                  <i class="fa-solid fa-gamepad"></i>
+                </div>
                 <span>Fun Games</span>
               </div>
-              <div class="quiz-feature">
-                <i class="fa-solid fa-trophy"></i>
+              <div class="quiz-feature" data-tilt>
+                <div class="feature-icon-wrapper icon-trophy">
+                  <i class="fa-solid fa-trophy"></i>
+                </div>
                 <span>Win Badges</span>
               </div>
-              <div class="quiz-feature">
-                <i class="fa-solid fa-book"></i>
+              <div class="quiz-feature" data-tilt>
+                <div class="feature-icon-wrapper icon-book">
+                  <i class="fa-solid fa-book-open"></i>
+                </div>
                 <span>Learn Facts</span>
               </div>
-
-
             </div>
 
-            <div class="quiz-buttons">
-              <a href="pages/quizzes/quiz.html" class="quiz-btn">
+            <div class="quiz-actions">
+              <a href="pages/quizzes/quiz.html" class="quiz-btn btn-primary-quiz">
                 <i class="fa-solid fa-play"></i> Start Quiz Now
               </a>
-              <a href="../frontend/pages/games/waste-game.html" class="quiz-btn"
-                style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);">
+              <a href="pages/games/waste-game.html" class="quiz-btn btn-secondary-quiz">
                 <i class="fa-solid fa-gamepad"></i> Play Waste Game
-              </a>
-              <a href="pages/games/rescure-game.html" class="quiz-btn"
-                style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);">
-                <i class="fa-solid fa-shield-alt"></i> Wildlife Rescue Mission
-              </a>
-              <a href="pages/games/ocean-cleanup.html" class="quiz-btn"
-                style="background: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%);">
-                <i class="fa-solid fa-water"></i> Ocean Cleanup Challenge
               </a>
             </div>
           </div>
 
           <div class="quiz-image" data-aos="fade-left">
             <div class="quiz-image-wrapper">
-              <img src="https://i.pinimg.com/1200x/82/b1/66/82b1667e9a1c1fabba633f0792725da9.jpg" alt="Kids Learning" />
+              <img src="assets/images/3d/quiz_mascot.png" alt="Kids Learning" />
               <div class="quiz-floating-badge badge-1">
                 <i class="fa-solid fa-star"></i> Fun!
               </div>
@@ -1572,6 +1884,16 @@
   </div>
 
   <!-- Scripts (optimized loading) -->
+  <!-- Performance fixes (load first) -->
+  <script src="js/utils/memory-manager.js"></script>
+  <script src="js/utils/dom-cache.js"></script>
+  <script src="js/utils/performance-fixes.js"></script>
+  <script src="js/utils/responsive-images.js"></script>
+  <script src="js/utils/accessibility-manager.js"></script>
+  <script src="js/utils/image-loader.js"></script>
+  <script src="js/utils/form-validator.js"></script>
+  <script src="js/utils/touch-interaction.js"></script>
+  
   <!-- Performance monitoring (load first) -->
   <script src="js/global/performance-monitor.js"></script>
 <script src="js/global/optimized-image-loader.js"></script>
@@ -1700,82 +2022,104 @@
 
   <!-- Dictionary Script -->
   <script>
-    const dictionary = [
-      { term: "Biodiversity", definition: "The variety of plant and animal life in the world or in a particular habitat.", category: "Environment" },
-      { term: "Conservation", definition: "The protection and preservation of the natural environment and wildlife.", category: "Environment" },
-      { term: "Endangered Species", definition: "Species at risk of extinction due to human activity or habitat loss.", category: "Wildlife" },
-      { term: "Deforestation", definition: "The clearing or thinning of forests by humans.", category: "Environment" },
-      { term: "Reforestation", definition: "The process of replanting trees in deforested areas.", category: "Environment" },
-      { term: "Poaching", definition: "Illegal hunting or capturing of animals.", category: "Wildlife" },
-      { term: "Sustainability", definition: "Meeting present needs without compromising future generations.", category: "Environment" },
-      { term: "Ecosystem", definition: "A biological community of interacting organisms and their environment.", category: "Environment" },
-      { term: "Wildlife Sanctuary", definition: "A protected area where wild animals live safely.", category: "Wildlife" },
-      { term: "Endemic Species", definition: "Species native to a specific place and found nowhere else.", category: "Wildlife" },
-      { term: "Climate Change", definition: "Long-term change in Earth's climate due to human or natural factors.", category: "Environment" },
-      { term: "Pollution", definition: "Introduction of harmful substances into the environment.", category: "Environment" },
-      { term: "Carbon Footprint", definition: "The total amount of greenhouse gases produced by human activities.", category: "Environment" },
-      { term: "Habitat Fragmentation", definition: "The process where large habitats are broken into smaller isolated patches.", category: "Environment" },
-      { term: "Overfishing", definition: "Catching too many fish from a body of water, reducing population.", category: "Wildlife" },
-      { term: "Organic Farming", definition: "Farming without synthetic pesticides or fertilizers.", category: "Environment" },
-      { term: "Urbanization", definition: "The increase of human populations in cities and towns.", category: "Environment" },
-      { term: "Extinction", definition: "The permanent loss of a species from Earth.", category: "Wildlife" },
-      { term: "Renewable Energy", definition: "Energy generated from natural resources that can be replenished.", category: "Environment" },
-      { term: "Wildlife Corridor", definition: "Protected pathways connecting fragmented habitats.", category: "Wildlife" }
-    ];
-
-    const grid = document.getElementById("dictionaryGrid");
-    const searchInput = document.getElementById("searchInput");
-    const noResults = document.getElementById("noResults");
-
-    function displayDictionary(list) {
-      if (!grid) return;
-      grid.innerHTML = "";
-      if (list.length === 0) {
-        if (noResults) noResults.style.display = "block";
-        return;
+    class DictionaryManager {
+      constructor() {
+        this.dictionary = [
+          { term: "Biodiversity", definition: "The variety of plant and animal life in the world or in a particular habitat.", category: "Environment" },
+          { term: "Conservation", definition: "The protection and preservation of the natural environment and wildlife.", category: "Environment" },
+          { term: "Endangered Species", definition: "Species at risk of extinction due to human activity or habitat loss.", category: "Wildlife" }
+        ];
+        this.grid = null;
+        this.searchInput = null;
+        this.noResults = null;
       }
-      if (noResults) noResults.style.display = "none";
 
-      list.forEach((item, index) => {
-        const card = document.createElement("div");
-        card.className = "dict-card";
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.innerHTML = `
-          <h3>${item.term}</h3>
-          <p>${item.definition}</p>
-          <span class="category-tag">${item.category}</span>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    if (grid) {
-      displayDictionary(dictionary);
-      if (searchInput) {
-        searchInput.addEventListener("input", () => {
-          const query = searchInput.value.toLowerCase();
-          const filtered = dictionary.filter(item => {
-            return item.term.toLowerCase().includes(query) || item.definition.toLowerCase().includes(query);
+      init() {
+        this.grid = document.getElementById("dictionaryGrid");
+        this.searchInput = document.getElementById("searchInput");
+        this.noResults = document.getElementById("noResults");
+        
+        if (this.grid) {
+          this.displayDictionary(this.dictionary);
+        }
+        
+        if (this.searchInput) {
+          this.searchInput.addEventListener("input", (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = this.dictionary.filter(item => {
+              return item.term.toLowerCase().includes(query) || item.definition.toLowerCase().includes(query);
+            });
+            this.displayDictionary(filtered);
           });
-          displayDictionary(filtered);
+        }
+      }
+
+      displayDictionary(list) {
+        if (!this.grid) return;
+        this.grid.innerHTML = "";
+        
+        if (list.length === 0) {
+          if (this.noResults) this.noResults.style.display = "block";
+          return;
+        }
+        
+        if (this.noResults) this.noResults.style.display = "none";
+
+        list.forEach((item, index) => {
+          const card = document.createElement("div");
+          card.className = "dict-card";
+          card.style.animationDelay = `${index * 0.1}s`;
+          card.innerHTML = `
+            <h3>${item.term}</h3>
+            <p>${item.definition}</p>
+            <span class="category-tag">${item.category}</span>
+          `;
+          this.grid.appendChild(card);
         });
       }
     }
+
+    const dictionaryManager = new DictionaryManager();
+    document.addEventListener('DOMContentLoaded', () => dictionaryManager.init());
   </script>
 
   <!-- Environmental Effects Script -->
   <script>
-    function spawnBirds() {
-      const birdsLayer = document.querySelector('.birds-layer');
-      if (!birdsLayer) return;
-      const bird = document.createElement('div');
-      bird.className = 'bird';
-      bird.textContent = '🕊️';
-      bird.style.top = Math.random() * 50 + '%';
-      birdsLayer.appendChild(bird);
-      setTimeout(() => bird.remove(), 15000);
+    class EnvironmentalEffects {
+      constructor() {
+        this.birdInterval = null;
+        this.particles = new Set();
+      }
+
+      startBirds() {
+        if (this.birdInterval) return;
+        this.birdInterval = setInterval(() => this.spawnBird(), 8000);
+      }
+
+      spawnBird() {
+        const birdsLayer = document.querySelector('.birds-layer');
+        if (!birdsLayer) return;
+        const bird = document.createElement('div');
+        bird.className = 'bird';
+        bird.textContent = '🕊️';
+        bird.style.top = Math.random() * 50 + '%';
+        birdsLayer.appendChild(bird);
+        setTimeout(() => bird.remove(), 15000);
+      }
+
+      cleanup() {
+        if (this.birdInterval) {
+          clearInterval(this.birdInterval);
+          this.birdInterval = null;
+        }
+      }
     }
-    setInterval(spawnBirds, 8000);
+
+    const envEffects = new EnvironmentalEffects();
+    envEffects.startBirds();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => envEffects.cleanup());
 
     function startRain(intensity = 80) {
       const rainLayer = document.querySelector('.rain-layer');
@@ -1804,65 +2148,170 @@
       }
     }
 
-    function enableSunlight() {
-      const sunGlow = document.querySelector('.sun-glow');
-      if (sunGlow) sunGlow.classList.add('active');
-    }
-
-    function disableSunlight() {
-      const sunGlow = document.querySelector('.sun-glow');
-      if (sunGlow) sunGlow.classList.remove('active');
-    }
-
     enableSunlight();
     startLeaves(25);
   </script>
 
   <!-- Scroll Scripts -->
   <script>
-    const scrollToBottomBtn = document.getElementById("scrollToBottom");
-    const backToTopBtn = document.getElementById("backToTop");
+    class ScrollManager {
+      constructor() {
+        this.scrollToBottomBtn = null;
+        this.backToTopBtn = null;
+        this.scrollHandler = null;
+      }
 
-    window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-      const winHeight = window.innerHeight;
+      init() {
+        this.scrollToBottomBtn = document.getElementById("scrollToBottom");
+        this.backToTopBtn = document.getElementById("backToTop");
+        
+        // Throttled scroll handler to prevent excessive calls
+        this.scrollHandler = this.throttle(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
 
-      if (backToTopBtn) {
-        if (scrollTop > 300) {
-          backToTopBtn.style.display = "flex";
-        } else {
-          backToTopBtn.style.display = "none";
+          if (this.backToTopBtn) {
+            this.backToTopBtn.style.display = scrollTop > 300 ? "flex" : "none";
+          }
+
+          if (this.scrollToBottomBtn) {
+            this.scrollToBottomBtn.style.display = 
+              scrollTop < docHeight - winHeight - 200 ? "flex" : "none";
+          }
+        }, 100);
+
+        window.addEventListener("scroll", this.scrollHandler);
+
+        if (this.scrollToBottomBtn) {
+          this.scrollToBottomBtn.addEventListener("click", () => {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: "smooth",
+            });
+          });
+        }
+
+        if (this.backToTopBtn) {
+          this.backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
         }
       }
 
-      if (scrollToBottomBtn) {
-        if (scrollTop < docHeight - winHeight - 200) {
-          scrollToBottomBtn.style.display = "flex";
-        } else {
-          scrollToBottomBtn.style.display = "none";
+      throttle(func, limit) {
+        let inThrottle;
+        return function (...args) {
+          if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => (inThrottle = false), limit);
+          }
+        };
+      }
+
+      cleanup() {
+        if (this.scrollHandler) {
+          window.removeEventListener("scroll", this.scrollHandler);
         }
       }
-    });
-
-    if (scrollToBottomBtn) {
-      scrollToBottomBtn.addEventListener("click", () => {
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: "smooth",
-        });
-      });
     }
 
-    if (backToTopBtn) {
-      backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-    }
+</script>
+  <!-- Global JavaScript for Live Clock -->
+  <script src="js/global/main.js"></script>
+
+  <!-- Home Page Parallax Script -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/components/eco-assistant.js"></script>
+
+  <!-- PWA Script -->
+  <script src="js/pwa.js"></script>
+  <script>
+    // Set initial theme based on localStorage or preference
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+// Theme toggle function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+}
   </script>
+
+  <script>
+  // Theme toggle functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const themeText = themeToggle.querySelector('.sr-only');
+    
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+      
+      // Force a reflow to ensure CSS updates
+      document.body.offsetHeight;
+    });
+    
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.className = 'fa-solid fa-sun';
+        themeText.textContent = 'Current theme: Dark mode';
+      } else {
+        themeIcon.className = 'fa-solid fa-moon';
+        themeText.textContent = 'Current theme: Light mode';
+      }
+    }
+    
+    // Apply text color fixes immediately
+    applyTextColorFixes();
+    
+    function applyTextColorFixes() {
+      // This function ensures text colors are correct
+      const isDarkTheme = document.documentElement.getAttribute('data-theme') === 'dark';
+      
+      if (!isDarkTheme) {
+        // Force dark text on all hero elements in light mode
+        const heroElements = document.querySelectorAll('.hero-content p, .hero-content span, .hero-content div');
+        heroElements.forEach(el => {
+          if (!el.classList.contains('btn') && !el.closest('.btn')) {
+            el.style.color = '#222222';
+          }
+        });
+        
+        // Specifically fix the hero features text
+        const heroFeatures = document.querySelectorAll('.hero-feature span');
+        heroFeatures.forEach(span => {
+          span.style.color = '#1b5e20';
+          span.style.fontWeight = '600';
+        });
+      }
+    }
+  });
+</script>
 </body>
 
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 15,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+    scale: 1.05
+  });
+</script>

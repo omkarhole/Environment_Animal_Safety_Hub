@@ -1,23 +1,14 @@
-# Pollution Awareness Quiz Implementation
+# Quiz Data Extraction Task
 
-## Current Status
+## Overview
+Extract hardcoded quiz data from JavaScript files to external JSON files for better maintainability.
 
-- [x] Update quiz-config.json with pollution awareness quiz
-- [x] Create pollution-awareness-quiz.html
-- [x] Create pollution-awareness-quiz.js
-- [x] Create pollution-awareness-quiz.css
-- [x] Update quiz-data.json with pollution awareness quiz questions
-- [x] Add navigation links to quiz from plant-care.html and join-garden-drive.html
-- [x] Test quiz functionality
-- [x] Verify mobile responsiveness
-
-## Files Created
-- frontend/pages/quizzes/pollution-awareness-quiz.html
-- frontend/js/pages/quizzes/pollution-awareness-quiz.js
-- frontend/css/pages/quizzes/pollution-awareness-quiz.css
-
-## Files Edited
-- frontend/assets/data/quiz-config.json (already had the quiz)
-- frontend/assets/data/quiz-data.json (added pollution awareness quiz)
-- frontend/pages/plant-care.html (added quiz link in hero actions)
-- frontend/pages/join-garden-drive.html (added quiz link in hero actions)
+## Steps
+- [x] Update quiz-data.json with missing quiz data (waste-management, animal-first-aid, climate-change, sustainable-gardening, etc.)
+- [x] Modify pollution-awareness-quiz.js to load data asynchronously
+- [x] Modify waste-management-quiz.js to load data asynchronously
+- [ ] Modify animal-first-aid-quiz.js to load data asynchronously
+- [ ] Modify climate-change-quiz.js to load data asynchronously
+- [ ] Modify sustainable-gardening-quiz.js to load data asynchronously
+- [ ] Check and update other quiz JS files if needed
+- [ ] Test that quizzes load data correctly and handle errors
