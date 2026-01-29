@@ -40,6 +40,7 @@ app.use('/api/payments', require('./backend/routes/payments'));
 app.use('/api/photos', require('./backend/routes/photos'));
 app.use('/api/species', require('./backend/routes/species'));
 app.use('/api/carbon-offsets', require('./backend/routes/carbon-offsets'));
+app.use('/api/eco-challenges', require('./backend/routes/eco-challenges'));
 
 // Middleware to log all requests
 app.use((req, res, next) => {
