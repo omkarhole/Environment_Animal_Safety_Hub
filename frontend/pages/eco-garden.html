@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Virtual Eco Garden Simulator</title>
   <link rel="stylesheet" href="../css/eco-garden.css">
+    <link rel="stylesheet" href="../css/eco-habit-tracker.css">
   <script defer src="../js/eco-garden.js"></script>
+    <script defer src="../js/eco-habit-tracker.js"></script>
+    <!-- html2canvas for achievement card sharing -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     body {
       background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
@@ -103,6 +107,46 @@
       <button class="share-btn" id="shareGardenBtn">Share Garden</button>
     </div>
     <div class="unlocked" id="unlockedInfo"></div>
+  </div>
+
+  <!-- Eco Habit Tracker & Rewards UI -->
+  <div class="eco-habit-tracker" id="ecoHabitTracker">
+    <div class="eco-habit-title">Eco Habit Tracker & Rewards 🌍</div>
+    <!-- Customizable Habit List -->
+    <div class="habit-list" id="habitListSection">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-weight:600;">Your Habits</span>
+        <button class="action-btn" id="addHabitBtn" style="padding:0.3rem 1rem;font-size:0.95rem;">+ Add Habit</button>
+      </div>
+      <div id="habitList"></div>
+    </div>
+    <!-- Daily Logging -->
+    <div class="habit-log" id="habitLogSection">
+      <span style="font-weight:600;">Log Today's Habits</span>
+      <div id="habitLog"></div>
+      <button class="action-btn" id="saveLogBtn" style="margin-top:0.7rem;">Save Log</button>
+    </div>
+    <!-- Streak Visualization -->
+    <div class="streaks" id="streakSection">
+      <span style="font-weight:600;">Streaks</span>
+      <div id="streaksBar"></div>
+    </div>
+    <!-- Badges & Rewards -->
+    <div class="badges" id="badgesSection">
+      <span style="font-weight:600;">Badges & Rewards</span>
+      <div id="badgesList"></div>
+    </div>
+    <!-- Analytics Dashboard -->
+    <div class="analytics" id="analyticsSection">
+      <span style="font-weight:600;">Analytics</span>
+      <canvas id="analyticsChart" class="analytics-chart"></canvas>
+    </div>
+    <!-- Shareable Achievement Card -->
+    <div class="achievement-card" id="achievementCardSection">
+      <span style="font-weight:600;">Achievement Card</span>
+      <div id="achievementCard"></div>
+      <button class="share-btn" id="shareAchievementBtn" style="margin-top:0.7rem;">Share Achievement</button>
+    </div>
   </div>
 </body>
 </html>
