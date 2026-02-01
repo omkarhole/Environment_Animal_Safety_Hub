@@ -1,4 +1,4 @@
-/* rewilding.css */
+/* rewilding.css - Fixed Alignments */
 
 /* ===== Hero Section ===== */
 .rewilding-hero {
@@ -10,6 +10,7 @@
     min-height: 90vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
 }
@@ -25,8 +26,7 @@
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 600px;
+    flex: 0 1 600px;
     z-index: 2;
     min-width: 300px;
 }
@@ -148,9 +148,12 @@
 }
 
 .hero-visual {
-    flex: 1;
+    flex: 0 1 500px;
     min-width: 300px;
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rewilding-timeline {
@@ -158,7 +161,7 @@
     flex-direction: column;
     gap: 20px;
     max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .timeline-phase {
@@ -191,6 +194,14 @@
     font-size: 0.9rem;
 }
 
+@media (max-width: 992px) {
+    .timeline-phase::before {
+        position: relative;
+        left: 0;
+        margin-bottom: 10px;
+    }
+}
+
 .phase-icon {
     width: 50px;
     height: 50px;
@@ -201,6 +212,7 @@
     justify-content: center;
     color: #1a1a1a;
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .phase-content {
@@ -240,8 +252,9 @@
 }
 
 .section-container {
-    max-width: 1200px;
+    max-width: 1700px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .section-header {
@@ -272,6 +285,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     margin-bottom: 60px;
+    align-items: start;
 }
 
 @media (max-width: 992px) {
@@ -280,13 +294,19 @@
     }
 }
 
-.concept-definition .definition-card {
+.concept-definition {
+    height: 100%;
+}
+
+.definition-card {
     background: white;
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 2px solid #4CAF50;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .definition-header {
@@ -306,12 +326,14 @@
     justify-content: center;
     color: white;
     font-size: 1.8rem;
+    flex-shrink: 0;
 }
 
 .definition-header h3 {
     flex: 1;
     font-size: 1.8rem;
     color: #1b5e20;
+    margin: 0;
 }
 
 .definition-principle {
@@ -321,6 +343,7 @@
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 blockquote {
@@ -368,26 +391,35 @@ blockquote cite {
     color: #4CAF50;
     font-size: 1.5rem;
     border: 2px solid #4CAF50;
+    flex-shrink: 0;
 }
 
 .principle-card h4 {
     font-size: 1.3rem;
     margin-bottom: 10px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .principle-card p {
     color: #666;
     font-size: 0.95rem;
     line-height: 1.5;
+    margin: 0;
 }
 
-.concept-comparison .comparison-card {
+.concept-comparison {
+    height: 100%;
+}
+
+.comparison-card {
     background: white;
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .comparison-card h3 {
@@ -397,6 +429,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .comparison-table {
@@ -404,6 +437,7 @@ blockquote cite {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 30px;
+    flex: 1;
 }
 
 .table-header {
@@ -440,6 +474,8 @@ blockquote cite {
     font-weight: 600;
     color: #1b5e20;
     border-right: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
 }
 
 .row-cell {
@@ -447,6 +483,9 @@ blockquote cite {
     text-align: center;
     color: #666;
     border-right: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .row-cell:last-child {
@@ -457,10 +496,12 @@ blockquote cite {
     display: flex;
     justify-content: space-around;
     gap: 20px;
+    margin-top: auto;
 }
 
 .comparison-stats .stat {
     text-align: center;
+    flex: 1;
 }
 
 .value {
@@ -474,6 +515,7 @@ blockquote cite {
 .label {
     font-size: 0.9rem;
     color: #666;
+    line-height: 1.3;
 }
 
 .rewilding-benefits {
@@ -490,6 +532,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .benefits-grid {
@@ -517,6 +560,9 @@ blockquote cite {
     text-align: center;
     border: 1px solid #e0e0e0;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .benefit-card:hover {
@@ -541,6 +587,7 @@ blockquote cite {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .benefit-card p {
@@ -548,6 +595,7 @@ blockquote cite {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .benefit-metric {
@@ -556,6 +604,7 @@ blockquote cite {
     align-items: center;
     padding-top: 15px;
     border-top: 1px solid #e0e0e0;
+    margin-top: auto;
 }
 
 .metric {
@@ -604,6 +653,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 0;
 }
 
 .filter-buttons {
@@ -622,6 +672,7 @@ blockquote cite {
     color: #666;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .filter-btn.active {
@@ -640,6 +691,7 @@ blockquote cite {
     padding: 20px;
     border-radius: 15px;
     border: 2px solid #e0e0e0;
+    min-width: 200px;
 }
 
 .legend h4 {
@@ -649,6 +701,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 0;
 }
 
 .legend-items {
@@ -668,6 +721,7 @@ blockquote cite {
     height: 20px;
     border-radius: 50%;
     border: 2px solid white;
+    flex-shrink: 0;
 }
 
 .legend-color.active {
@@ -703,10 +757,11 @@ blockquote cite {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .placeholder-content {
-    text-align: center;
+    max-width: 300px;
 }
 
 .placeholder-content i {
@@ -719,10 +774,12 @@ blockquote cite {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .placeholder-content p {
     color: #666;
+    margin: 0;
 }
 
 .map-stats {
@@ -741,6 +798,7 @@ blockquote cite {
     border-radius: 15px;
     min-width: 200px;
     border: 2px solid #c8e6c9;
+    flex: 1;
 }
 
 .stat-icon {
@@ -753,6 +811,7 @@ blockquote cite {
     justify-content: center;
     color: white;
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .stat-content {
@@ -785,11 +844,13 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .projects-carousel {
     position: relative;
     margin-bottom: 30px;
+    overflow: hidden;
 }
 
 .carousel-track {
@@ -807,6 +868,8 @@ blockquote cite {
     border: 2px solid #e0e0e0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0.7;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 768px) {
@@ -847,22 +910,28 @@ blockquote cite {
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+    max-width: fit-content;
 }
 
 .project-content {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .project-content h4 {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .project-content p {
     color: #666;
     line-height: 1.6;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .project-stats {
@@ -888,6 +957,7 @@ blockquote cite {
 .label {
     font-size: 0.85rem;
     color: #666;
+    line-height: 1.3;
 }
 
 .project-details-btn {
@@ -901,6 +971,7 @@ blockquote cite {
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.3s ease;
+    margin-top: auto;
 }
 
 .project-details-btn:hover {
@@ -952,6 +1023,7 @@ blockquote cite {
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s ease;
+    flex-shrink: 0;
 }
 
 .dot.active {
@@ -1029,6 +1101,7 @@ blockquote cite {
 @media (max-width: 992px) {
     .success-story {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
 }
 
@@ -1042,6 +1115,8 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 30px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .transformation-before,
@@ -1051,6 +1126,7 @@ blockquote cite {
     padding: 25px;
     border-radius: 15px;
     border: 2px solid #e0e0e0;
+    min-width: 200px;
 }
 
 .phase-label {
@@ -1090,6 +1166,7 @@ blockquote cite {
 
 .state-item i {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .transformation-arrow {
@@ -1108,10 +1185,16 @@ blockquote cite {
     color: #666;
 }
 
+.story-content {
+    display: flex;
+    flex-direction: column;
+}
+
 .story-content h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .story-content p {
@@ -1148,6 +1231,7 @@ blockquote cite {
     color: #4CAF50;
     font-size: 1.5rem;
     border: 2px solid #4CAF50;
+    flex-shrink: 0;
 }
 
 .metric-details {
@@ -1165,6 +1249,7 @@ blockquote cite {
 .metric-details .label {
     font-size: 0.85rem;
     color: #666;
+    line-height: 1.3;
 }
 
 .trophic-cascade {
@@ -1172,6 +1257,7 @@ blockquote cite {
     padding: 25px;
     border-radius: 15px;
     border: 2px solid #e0e0e0;
+    margin-top: auto;
 }
 
 .trophic-cascade h4 {
@@ -1181,6 +1267,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 0;
 }
 
 .cascade-chain {
@@ -1209,6 +1296,7 @@ blockquote cite {
     justify-content: center;
     color: white;
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .step-desc {
@@ -1236,6 +1324,7 @@ blockquote cite {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .indicators-grid {
@@ -1261,6 +1350,9 @@ blockquote cite {
     border-radius: 15px;
     padding: 25px;
     border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .indicator-icon {
@@ -1273,13 +1365,15 @@ blockquote cite {
     justify-content: center;
     color: white;
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 }
 
 .indicator-card h4 {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #1b5e20;
+    margin-top: 0;
+    text-align: center;
 }
 
 .indicator-card p {
@@ -1287,6 +1381,8 @@ blockquote cite {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 20px;
+    flex: 1;
+    text-align: center;
 }
 
 .indicator-progress {
@@ -1303,24 +1399,25 @@ blockquote cite {
     overflow: hidden;
 }
 
+
 .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #4CAF50, #2e7d32);
     border-radius: 5px;
-    transition: width 1s ease;
+    transition: width 0.3s ease;
 }
 
 .progress-value {
     font-size: 0.9rem;
     font-weight: 600;
     color: #4CAF50;
-    white-space: nowrap;
+    min-width: 70px;
 }
 
 /* ===== Challenges Section ===== */
 .challenges-section {
     padding: 80px 5%;
-    background: linear-gradient(to bottom, #fff8e1, #ffecb3);
+    background: linear-gradient(to bottom, #fff3e0, #ffe0b2);
 }
 
 .challenges-content {
@@ -1336,8 +1433,8 @@ blockquote cite {
 
 .challenge-categories {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 @media (max-width: 992px) {
@@ -1349,8 +1446,8 @@ blockquote cite {
 .category {
     background: #f9f9f9;
     border-radius: 15px;
-    padding: 30px;
     border: 2px solid #e0e0e0;
+    padding: 30px;
 }
 
 .category-header {
@@ -1358,43 +1455,48 @@ blockquote cite {
     align-items: center;
     gap: 15px;
     margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
+    flex-wrap: wrap;
 }
 
 .category-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(45deg, #FF9800, #F57C00);
+    background: linear-gradient(45deg, #ff9800, #ff5722);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .category-header h3 {
     flex: 1;
     font-size: 1.5rem;
-    color: #1b5e20;
+    color: #e65100;
+    margin: 0;
+    min-width: 200px;
 }
 
 .category-difficulty {
-    padding: 8px 16px;
+    padding: 5px 15px;
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
-.category-difficulty.high {
+.high {
     background: #ffebee;
     color: #f44336;
+    border: 1px solid #f44336;
 }
 
-.category-difficulty.medium {
+.medium {
     background: #fff3e0;
-    color: #FF9800;
+    color: #ff9800;
+    border: 1px solid #ff9800;
 }
 
 .challenge-list {
@@ -1406,22 +1508,24 @@ blockquote cite {
 .challenge-item {
     display: flex;
     gap: 15px;
+    align-items: flex-start;
     padding: 20px;
     background: white;
     border-radius: 10px;
-    border-left: 4px solid #FF9800;
+    border-left: 4px solid #ff9800;
 }
 
 .challenge-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: #fff3e0;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FF9800;
-    font-size: 1.5rem;
+    color: #ff9800;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .challenge-details {
@@ -1429,29 +1533,31 @@ blockquote cite {
 }
 
 .challenge-details h4 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    color: #e65100;
+    margin-top: 0;
 }
 
 .challenge-details p {
     color: #666;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.5;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .challenge-stats {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .challenge-stats .stat {
-    background: #f9f9f9;
-    padding: 5px 10px;
-    border-radius: 5px;
     font-size: 0.85rem;
-    color: #FF9800;
+    color: #ff9800;
+    background: #fff3e0;
+    padding: 3px 8px;
+    border-radius: 10px;
     font-weight: 600;
 }
 
@@ -1462,24 +1568,29 @@ blockquote cite {
 .case-studies-challenges h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #1b5e20;
+    color: #e65100;
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .case-study-tabs .tab-buttons {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-bottom: 30px;
-    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .case-study-tabs .tab-buttons {
+        grid-template-columns: 1fr;
+    }
 }
 
 .case-study-tabs .tab-btn {
-    flex: 1;
-    min-width: 200px;
-    background: #f1f8e9;
-    border: 2px solid #c8e6c9;
+    background: #fff3e0;
+    border: 2px solid #ffcc80;
     padding: 15px;
     border-radius: 10px;
     font-size: 0.95rem;
@@ -1494,14 +1605,14 @@ blockquote cite {
 }
 
 .case-study-tabs .tab-btn.active {
-    background: linear-gradient(45deg, #FF9800, #F57C00);
+    background: linear-gradient(45deg, #ff9800, #ff5722);
     color: white;
-    border-color: #FF9800;
+    border-color: #ff9800;
 }
 
 .case-study-tabs .tab-btn:hover:not(.active) {
-    background: #e8f5e9;
-    border-color: #FF9800;
+    background: #ffe0b2;
+    border-color: #ff9800;
 }
 
 .case-study {
@@ -1514,6 +1625,7 @@ blockquote cite {
 @media (max-width: 992px) {
     .case-study {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
 }
 
@@ -1525,171 +1637,162 @@ blockquote cite {
 
 .conflict-analysis {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 30px;
     width: 100%;
 }
 
 .stakeholder {
-    flex: 1;
-    background: #f9f9f9;
+    display: flex;
+    gap: 15px;
     padding: 25px;
     border-radius: 15px;
+    background: #f9f9f9;
     border: 2px solid #e0e0e0;
-    text-align: center;
 }
 
 .stakeholder.farmers {
-    border-color: #f44336;
+    border-left: 5px solid #f44336;
 }
 
 .stakeholder.conservationists {
-    border-color: #4CAF50;
+    border-left: 5px solid #4CAF50;
 }
 
 .stakeholder-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: white;
-    border-radius: 50%;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 15px;
-    font-size: 1.8rem;
-    border: 2px solid;
+    font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
-.stakeholder.farmers .stakeholder-icon {
+.farmers .stakeholder-icon {
     color: #f44336;
-    border-color: #f44336;
+    border: 2px solid #f44336;
 }
 
-.stakeholder.conservationists .stakeholder-icon {
+.conservationists .stakeholder-icon {
     color: #4CAF50;
-    border-color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.stakeholder-content {
+    flex: 1;
 }
 
 .stakeholder-content h4 {
     font-size: 1.3rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    margin-top: 0;
+}
+
+.farmers h4 {
+    color: #f44336;
+}
+
+.conservationists h4 {
+    color: #4CAF50;
 }
 
 .stakeholder-content p {
     color: #666;
     font-size: 0.9rem;
     line-height: 1.5;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .stakeholder-stats {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
 }
 
 .stakeholder-stats .stat {
-    background: white;
-    padding: 8px;
-    border-radius: 8px;
     font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.stakeholder.farmers .stat {
-    color: #f44336;
-    border: 1px solid #f44336;
-}
-
-.stakeholder.conservationists .stat {
-    color: #4CAF50;
-    border: 1px solid #4CAF50;
+    color: #666;
 }
 
 .conflict-arrows {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.arrow {
-    width: 40px;
-    height: 2px;
-    background: #FF9800;
+    text-align: center;
     position: relative;
 }
 
-.arrow::before {
+.conflict-arrows .arrow {
+    width: 100%;
+    height: 2px;
+    background: #ff9800;
+    position: relative;
+    margin: 10px 0;
+}
+
+.conflict-arrows .arrow::before,
+.conflict-arrows .arrow::after {
     content: '';
     position: absolute;
-    right: -5px;
-    top: -3px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid #FF9800;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #ff9800;
+    border-top: 2px solid #ff9800;
+    top: -4px;
 }
 
-.arrow.reverse {
-    background: #4CAF50;
+.conflict-arrows .arrow::before {
+    left: 0;
+    transform: rotate(-135deg);
 }
 
-.arrow.reverse::before {
-    left: -5px;
-    right: auto;
-    border-left: none;
-    border-right: 8px solid #4CAF50;
+.conflict-arrows .arrow.reverse {
+    transform: rotate(180deg);
 }
 
-.invasive-impact .impact-chain,
-.climate-impacts .impact-grid {
+.invasive-impact,
+.climate-impacts {
     width: 100%;
 }
 
 .impact-chain {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.chain-step {
-    display: flex;
-    align-items: center;
     gap: 15px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    border: 2px solid #e0e0e0;
 }
 
 .impact-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .impact-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    background: #f9f9f9;
     padding: 20px;
-    background: white;
     border-radius: 10px;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    gap: 15px;
 }
 
 .impact-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: #fff3e0;
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FF9800;
-    font-size: 1.5rem;
+    color: #ff9800;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .impact-details {
@@ -1698,37 +1801,40 @@ blockquote cite {
 
 .impact-details h5 {
     font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: #1b5e20;
+    margin-bottom: 5px;
+    color: #e65100;
+    margin-top: 0;
 }
 
 .impact-details p {
     color: #666;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
     margin-bottom: 10px;
 }
 
 .impact-severity .severity {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 10px;
     font-weight: 600;
 }
 
-.severity.high {
+.impact-severity .high {
     background: #ffebee;
     color: #f44336;
 }
 
-.severity.medium {
+.impact-severity .medium {
     background: #fff3e0;
-    color: #FF9800;
+    color: #ff9800;
 }
 
 .case-content h4 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: #1b5e20;
+    color: #e65100;
+    margin-top: 0;
 }
 
 .case-content p {
@@ -1737,198 +1843,192 @@ blockquote cite {
     margin-bottom: 25px;
 }
 
-.solutions {
+.solutions,
+.management-strategies,
+.adaptation-strategies {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+}
+
+.solution,
+.strategy {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #ff9800;
 }
 
 .solution {
     display: flex;
     gap: 15px;
-    padding: 20px;
-    background: #f1f8e9;
-    border-radius: 10px;
-    border-left: 4px solid #4CAF50;
+    align-items: flex-start;
 }
 
 .solution-icon {
-    width: 50px;
-    height: 50px;
-    background: white;
+    width: 40px;
+    height: 40px;
+    background: #4CAF50;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4CAF50;
-    font-size: 1.5rem;
-    border: 2px solid #4CAF50;
+    color: white;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.solution-details {
+    flex: 1;
 }
 
 .solution-details h5 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .solution-details p {
     color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
 }
 
 .solution-impact .impact {
-    background: white;
-    padding: 5px 10px;
-    border-radius: 5px;
     font-size: 0.85rem;
-    font-weight: 600;
     color: #4CAF50;
-    border: 1px solid #4CAF50;
-}
-
-.management-strategies,
-.adaptation-strategies {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.strategy {
-    padding: 20px;
-    background: #f1f8e9;
+    background: #e8f5e9;
+    padding: 3px 8px;
     border-radius: 10px;
-    border-left: 4px solid #4CAF50;
+    font-weight: 600;
 }
 
 .strategy h5 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
     color: #1b5e20;
+    margin-top: 0;
 }
 
 .strategy p {
     color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
 }
 
 .strategy-effectiveness,
 .strategy-benefit {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .effectiveness,
 .benefit,
+.risk,
 .success {
-    background: white;
-    padding: 5px 10px;
-    border-radius: 5px;
     font-size: 0.85rem;
+    padding: 3px 8px;
+    border-radius: 10px;
     font-weight: 600;
 }
 
 .effectiveness {
+    background: #e8f5e9;
     color: #4CAF50;
-    border: 1px solid #4CAF50;
-}
-
-.risk {
-    color: #FF9800;
-    border: 1px solid #FF9800;
 }
 
 .benefit {
+    background: #e3f2fd;
     color: #2196F3;
-    border: 1px solid #2196F3;
+}
+
+.risk {
+    background: #ffebee;
+    color: #f44336;
 }
 
 .success {
-    color: #4CAF50;
-    border: 1px solid #4CAF50;
+    background: #f3e5f5;
+    color: #9c27b0;
 }
 
 .solutions-framework {
-    background: #f9f9f9;
-    border-radius: 20px;
-    padding: 40px;
-    border: 2px solid #e0e0e0;
+    margin-top: 60px;
 }
 
 .solutions-framework h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #1b5e20;
+    color: #e65100;
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .framework-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
-@media (max-width: 1200px) {
-    .framework-steps {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .framework-steps {
-        grid-template-columns: 1fr;
-    }
-}
-
-.framework-steps .step {
-    background: white;
-    border-radius: 15px;
+.step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: #f9f9f9;
     padding: 30px;
-    border-top: 5px solid #4CAF50;
+    border-radius: 15px;
+    border-left: 5px solid #ff9800;
     transition: transform 0.3s ease;
 }
 
-.framework-steps .step:hover {
-    transform: translateY(-5px);
+.step:hover {
+    transform: translateX(10px);
 }
 
 .step-number {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
-    color: #4CAF50;
-    opacity: 0.3;
-    margin-bottom: 15px;
+    color: #ff9800;
+    min-width: 60px;
+    text-align: center;
+}
+
+.step-content {
+    flex: 1;
 }
 
 .step-content h4 {
     font-size: 1.3rem;
-    margin-bottom: 15px;
-    color: #1b5e20;
+    margin-bottom: 10px;
+    color: #e65100;
+    margin-top: 0;
 }
 
 .step-content p {
     color: #666;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .step-tools {
     display: flex;
-    flex-direction: column;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .tool {
-    background: #f1f8e9;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    color: #4CAF50;
+    font-size: 0.85rem;
+    background: white;
+    color: #ff9800;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid #ffcc80;
     font-weight: 600;
 }
 
@@ -1971,6 +2071,9 @@ blockquote cite {
     text-align: center;
     border: 1px solid #e0e0e0;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .trend-card:hover {
@@ -1981,7 +2084,7 @@ blockquote cite {
 .trend-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #2196F3, #1976D2);
+    background: linear-gradient(45deg, #2196F3, #0d47a1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1994,7 +2097,8 @@ blockquote cite {
 .trend-card h4 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    color: #0d47a1;
+    margin-top: 0;
 }
 
 .trend-card p {
@@ -2002,21 +2106,25 @@ blockquote cite {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .trend-impact {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: auto;
 }
 
-.impact {
-    font-size: 1rem;
+.trend-impact .impact {
+    font-size: 0.9rem;
     font-weight: 700;
     color: #2196F3;
 }
 
-.scope {
+.trend-impact .scope {
     font-size: 0.85rem;
     color: #666;
 }
@@ -2028,45 +2136,53 @@ blockquote cite {
 .future-projects h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #1b5e20;
+    color: #0d47a1;
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
 }
 
 .project-timeline {
     position: relative;
-    padding-left: 40px;
+    padding-left: 30px;
 }
 
 .project-timeline::before {
     content: '';
     position: absolute;
-    left: 15px;
+    left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(to bottom, #2196F3, #4CAF50);
-    border-radius: 2px;
+    width: 3px;
+    background: #2196F3;
+    border-radius: 3px;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding-left: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-marker {
     position: absolute;
     left: -40px;
-    width: 30px;
-    height: 30px;
+    top: 0;
+    width: 20px;
+    height: 20px;
     background: white;
-    border: 4px solid #2196F3;
+    border: 3px solid #2196F3;
     border-radius: 50%;
+    z-index: 1;
 }
 
 .timeline-content {
-    background: #f9f9f9;
+    background: #e3f2fd;
     padding: 25px;
     border-radius: 15px;
     border-left: 4px solid #2196F3;
@@ -2075,7 +2191,8 @@ blockquote cite {
 .timeline-content h4 {
     font-size: 1.3rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    color: #0d47a1;
+    margin-top: 0;
 }
 
 .timeline-content p {
@@ -2087,21 +2204,22 @@ blockquote cite {
 .timeline-details {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
-.detail {
-    background: white;
-    padding: 8px 15px;
-    border-radius: 20px;
+.timeline-details .detail {
     font-size: 0.9rem;
-    font-weight: 600;
+    background: white;
     color: #2196F3;
-    border: 1px solid #2196F3;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: 1px solid #bbdefb;
 }
 
 .get-involved {
     background: #f9f9f9;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 40px;
     border: 2px solid #e0e0e0;
 }
@@ -2109,10 +2227,12 @@ blockquote cite {
 .get-involved h3 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #1b5e20;
+    color: #0d47a1;
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-top: 0;
+    text-align: center;
 }
 
 .involvement-options {
@@ -2138,20 +2258,17 @@ blockquote cite {
     border-radius: 15px;
     padding: 25px;
     text-align: center;
-    border: 2px solid #e0e0e0;
-    transition: transform 0.3s ease;
-}
-
-.option-card:hover {
-    transform: translateY(-5px);
-    border-color: #4CAF50;
+    border: 2px solid #bbdefb;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .option-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #4CAF50, #2e7d32);
-    border-radius: 50%;
+    background: linear-gradient(45deg, #2196F3, #0d47a1);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2163,7 +2280,8 @@ blockquote cite {
 .option-card h4 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    color: #0d47a1;
+    margin-top: 0;
 }
 
 .option-card p {
@@ -2171,6 +2289,7 @@ blockquote cite {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .option-actions {
@@ -2181,10 +2300,10 @@ blockquote cite {
 
 .action-link {
     display: block;
-    background: #f1f8e9;
-    color: #4CAF50;
-    text-decoration: none;
     padding: 10px;
+    background: #e3f2fd;
+    color: #2196F3;
+    text-decoration: none;
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -2192,48 +2311,43 @@ blockquote cite {
 }
 
 .action-link:hover {
-    background: #4CAF50;
+    background: #2196F3;
     color: white;
+    transform: translateY(-3px);
 }
 
 /* ===== Pledge Section ===== */
 .pledge-section {
     padding: 80px 5%;
-    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    color: white;
 }
 
 .pledge-card {
-    background: white;
-    border-radius: 20px;
-    padding: 60px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     max-width: 800px;
     margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-    .pledge-card {
-        padding: 30px;
-    }
-}
-
-.pledge-content {
-    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .pledge-content h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #1b5e20;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
 }
 
-.pledge-content p {
+.pledge-content > p {
+    text-align: center;
     font-size: 1.1rem;
-    color: #666;
+    opacity: 0.9;
     margin-bottom: 40px;
     max-width: 600px;
     margin-left: auto;
@@ -2241,33 +2355,32 @@ blockquote cite {
 }
 
 .pledge-commitments {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
     margin-bottom: 40px;
-    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .commitment {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
+    margin-bottom: 20px;
     padding: 15px;
-    background: #f1f8e9;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
-    border-left: 4px solid #4CAF50;
+    border-left: 3px solid #4CAF50;
+}
+
+.commitment:last-child {
+    margin-bottom: 0;
 }
 
 .commitment i {
     color: #4CAF50;
     font-size: 1.2rem;
-    margin-top: 2px;
-}
-
-.commitment span {
-    color: #1b5e20;
-    font-weight: 500;
-    line-height: 1.5;
+    flex-shrink: 0;
 }
 
 .pledge-form {
@@ -2278,25 +2391,25 @@ blockquote cite {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .form-group {
-        flex-direction: column;
-        gap: 15px;
-    }
+    flex-wrap: wrap;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     flex: 1;
+    min-width: 200px;
     padding: 15px;
-    border: 2px solid #e0e0e0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
+    color: white;
     font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input:focus,
@@ -2304,19 +2417,15 @@ blockquote cite {
 .form-group textarea:focus {
     outline: none;
     border-color: #4CAF50;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .form-actions {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .pledge-submit {
@@ -2325,47 +2434,51 @@ blockquote cite {
     border: none;
     padding: 18px 40px;
     border-radius: 50px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 10px;
+    transition: transform 0.3s ease;
+    min-width: 200px;
 }
 
 .pledge-submit:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
 }
 
 .pledge-count {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #666;
-    font-size: 1.1rem;
+    text-align: center;
+    min-width: 200px;
 }
 
 .pledge-count .count {
-    font-size: 2rem;
-    font-weight: 700;
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.pledge-count .label {
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .pledge-communities {
+    text-align: center;
     padding-top: 40px;
-    border-top: 2px solid #e0e0e0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .pledge-communities h4 {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-    color: #1b5e20;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .community-links {
@@ -2379,29 +2492,266 @@ blockquote cite {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: #f1f8e9;
-    color: #4CAF50;
-    text-decoration: none;
     padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .community-link:hover {
-    background: #4CAF50;
-    color: white;
+    background: white;
+    color: #0d47a1;
     transform: translateY(-3px);
 }
 
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+    }
+    
+    .stat-item {
+        width: 100%;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .definition-card,
+    .comparison-card,
+    .success-content,
+    .challenges-content {
+        padding: 25px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .pledge-submit,
+    .pledge-count {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .pledge-card {
+        padding: 30px 20px;
+    }
+    
+    .pledge-content h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ===== Dark Theme Support ===== */
+.dark-theme .concept-section,
+.dark-theme .success-section {
+    background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+}
+
+.dark-theme .projects-map-section {
+    background: linear-gradient(to bottom, #2d2d2d, #3d3d3d);
+}
+
+.dark-theme .challenges-section {
+    background: linear-gradient(to bottom, #332211, #442211);
+}
+
+.dark-theme .future-section {
+    background: linear-gradient(to bottom, #1a1a2d, #1a1a3d);
+}
+
+.dark-theme .definition-card,
+.dark-theme .comparison-card,
+.dark-theme .rewilding-benefits,
+.dark-theme .map-container,
+.dark-theme .featured-projects,
+.dark-theme .success-content,
+.dark-theme .success-indicators,
+.dark-theme .challenges-content,
+.dark-theme .future-content,
+.dark-theme .option-card {
+    background: #2d2d2d;
+    color: #e0e0e0;
+}
+
+.dark-theme .section-header h2,
+.dark-theme .benefit-card h4,
+.dark-theme .indicator-card h4,
+.dark-theme .trend-card h4 {
+    color: #4CAF50;
+}
+
+.dark-theme .section-header p,
+.dark-theme .benefit-card p,
+.dark-theme .indicator-card p,
+.dark-theme .trend-card p,
+.dark-theme .option-card p {
+    color: #b0b0b0;
+}
+
+.dark-theme .principle-card,
+.dark-theme .benefit-card,
+.dark-theme .indicator-card,
+.dark-theme .trend-card {
+    background: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+.dark-theme .comparison-table,
+.dark-theme .tab-pane {
+    background: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+.dark-theme .table-row .row-label {
+    background: #4d4d4d;
+    color: #e0e0e0;
+}
+
+.dark-theme .tab-btn:not(.active) {
+    background: #3d3d3d;
+    color: #b0b0b0;
+    border-color: #4d4d4d;
+}
+
+/* ===== Animations ===== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ===== Scroll Progress ===== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #2e7d32);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #4CAF50, #2e7d32);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Map Marker Styling ===== */
+.map-marker {
+    width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.map-marker::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+.map-marker i {
+    position: relative;
+    z-index: 1;
+    color: #4CAF50;
+    transform: rotate(45deg);
+    font-size: 12px;
+}
+
+.map-marker.active {
+    background: #4CAF50;
+}
+
+.map-marker.planned {
+    background: #FFC107;
+}
+
+.map-marker.completed {
+    background: #2196F3;
+}
+
+.map-marker.active i,
+.map-marker.planned i,
+.map-marker.completed i {
+    color: inherit;
+}
+
+/* ===== Pledge Success Message ===== */
 .pledge-success {
-    background: #e8f5e9;
-    border: 2px solid #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid #4CAF50;
     border-radius: 15px;
     padding: 30px;
     text-align: center;
     margin-top: 30px;
     animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .pledge-success i {
@@ -2413,191 +2763,10 @@ blockquote cite {
 .pledge-success h4 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: #1b5e20;
+    color: white;
 }
 
 .pledge-success p {
-    color: #666;
+    color: rgba(255, 255, 255, 0.8);
     margin: 0;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== Leaflet Map Customizations ===== */
-.custom-marker {
-    background: none;
-    border: none;
-}
-
-.map-marker {
-    width: 30px;
-    height: 30px;
-    background: #4CAF50;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1rem;
-    border: 2px solid white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.map-marker.completed {
-    background: #4CAF50;
-}
-
-.map-marker.active {
-    background: #2196F3;
-}
-
-.map-marker.planned {
-    background: #FFC107;
-}
-
-.map-marker.europe { background: #4CAF50; }
-.map-marker.americas { background: #2196F3; }
-.map-marker.asia { background: #FF9800; }
-.map-marker.africa { background: #9C27B0; }
-
-/* ===== Dark Theme ===== */
-.dark-theme .rewilding-hero {
-    background: linear-gradient(135deg, #0d1f0d 0%, #1b5e20 100%);
-}
-
-.dark-theme .concept-section,
-.dark-theme .projects-map-section,
-.dark-theme .success-section,
-.dark-theme .challenges-section,
-.dark-theme .future-section {
-    background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
-}
-
-.dark-theme .section-header h2,
-.dark-theme .section-header p {
-    color: #e0e0e0;
-}
-
-.dark-theme .definition-card,
-.dark-theme .comparison-card,
-.dark-theme .rewilding-benefits,
-.dark-theme .map-container,
-.dark-theme .featured-projects,
-.dark-theme .success-content,
-.dark-theme .success-indicators,
-.dark-theme .challenges-content,
-.dark-theme .solutions-framework,
-.dark-theme .future-content,
-.dark-theme .get-involved {
-    background: #2d2d2d;
-    color: #e0e0e0;
-    border-color: #404040;
-}
-
-.dark-theme .benefit-card,
-.dark-theme .project-card,
-.dark-theme .indicator-card,
-.dark-theme .category,
-.dark-theme .challenge-item,
-.dark-theme .case-study,
-.dark-theme .trend-card,
-.dark-theme .option-card {
-    background: #2d2d2d;
-    color: #e0e0e0;
-}
-
-.dark-theme h1,
-.dark-theme h2,
-.dark-theme h3,
-.dark-theme h4,
-.dark-theme h5,
-.dark-theme h6 {
-    color: #ffffff;
-}
-
-.dark-theme p,
-.dark-theme span,
-.dark-theme label,
-.dark-theme li {
-    color: #b0b0b0;
-}
-
-/* ===== Responsive Design ===== */
-@media (max-width: 768px) {
-    .rewilding-hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 100px;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-stats {
-        justify-content: center;
-    }
-    
-    .timeline-phase::before {
-        position: relative;
-        left: 0;
-        margin-bottom: 10px;
-    }
-    
-    .timeline-phase {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .section-header h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .stat-item {
-        min-width: 120px;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem;
-    }
-}
-
-/* ===== Print Styles ===== */
-@media print {
-    .theme-toggle,
-    .cta-button,
-    .carousel-btn,
-    .pledge-submit,
-    .community-links {
-        display: none !important;
-    }
-    
-    .rewilding-hero {
-        background: white !important;
-        color: black !important;
-        min-height: auto;
-        padding: 40px 5%;
-    }
-    
-    .gradient-text {
-        background: none !important;
-        color: black !important;
-    }
-    
-    .hero-visual {
-        display: none;
-    }
-    
-    .pledge-form {
-        display: none;
-    }
 }
