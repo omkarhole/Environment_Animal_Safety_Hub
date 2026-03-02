@@ -812,7 +812,7 @@ select {
 
 .myth-fact-section {
   padding: 80px 20px;
-  background-color: var(--bg-secondary);
+  background-color: hsl(from var(--bg-color) h s l / 0.8);
   font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
@@ -881,13 +881,14 @@ select {
    4. FRONT & BACK SPECIFICS
    ========================================= */
 .card-front {
-  background: linear-gradient(135deg, #e65100 0%, #f57c00 100%);
+  background: #4caf50;
   z-index: 2;
   /* Ensures front sits on top initially */
 }
 
 .card-back {
-  background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);
+
+  background: var(--secondary-dark);
   /* Rotate 180deg so it faces away initially. 
      Do NOT add translateY here. */
   transform: rotateY(180deg);
@@ -932,7 +933,7 @@ select {
 
 .action-pill {
   font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--secondary-dark);
   padding: 8px 16px;
   color: white;
   border-radius: 20px;
@@ -943,7 +944,7 @@ select {
 
 .myth-card-wrapper:hover .action-pill {
   background: white;
-  color: #2c3e50;
+  color: var(--secondary-dark);
 }
 
 .card-shine {
@@ -952,7 +953,7 @@ select {
 
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
   transform: skewX(-25deg);
   transition: 0.5s;
 }
