@@ -1,453 +1,621 @@
-/* =================================================================
-   Permafrost Thaw & The Methane Time Bomb — Interactive Modules
-   Issue #3128
-   ================================================================= */
+/* ==========================================
+   Permafrost Thaw & Methane Time Bomb Crisis
+   Interactive features JavaScript
+   ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPermafrostMap();
-  initMethaneSimulator();
-  initFeedbackLoopAnimation();
-  initScrollAnimations();
+    initNavToggle();
+    initHeroCounters();
+    initHeroParticles();
+    initPermafrostMap();
+    initMethaneSimulator();
+    initInfraBarAnimation();
 });
 
-/* ──────────────────────────────────────────────
-   1. Interactive Permafrost Map
-   ────────────────────────────────────────────── */
+/* ==========================================
+   Navigation Toggle (Mobile)
+   ========================================== */
+function initNavToggle() {
+    const toggle = document.getElementById('navToggle');
+    const links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
 
-const MAP_CONFIG = {
-  startYear: 2025,
-  endYear: 2075,
-  scenarios: {
-    low: { label: 'Low Warming (+1.5 °C)', retreatRate: 0.4 },
-    moderate: { label: 'Moderate Warming (+2.5 °C)', retreatRate: 0.7 },
-    high: { label: 'High Warming (+4.0 °C)', retreatRate: 1.0 },
-  },
-  regions: [
-    { name: 'Siberia', cx: 0.62, cy: 0.28, baseRadius: 38, color: '#5dade2' },
-    { name: 'Alaska', cx: 0.15, cy: 0.32, baseRadius: 22, color: '#48c9b0' },
-    { name: 'Canada', cx: 0.30, cy: 0.25, baseRadius: 30, color: '#7fb3d8' },
-  ],
-};
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('active');
+        const icon = toggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
 
-let mapState = {
-  year: 2025,
-  scenario: 'moderate',
-  playing: false,
-  animFrame: null,
-};
+    // Close menu on link click
+    links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            links.classList.remove('active');
+            const icon = toggle.querySelector('i');
+            icon.className = 'fas fa-bars';
+        });
+    });
+}
 
+/* ==========================================
+   Hero Stat Counters
+   ========================================== */
+function initHeroCounters() {
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    if (!counters.length) return;
+
+    const animateCounter = (el) => {
+        const target = parseInt(el.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const update = () => {
+            current += step;
+            if (current < target) {
+                el.textContent = Math.floor(current).toLocaleString();
+                requestAnimationFrame(update);
+            } else {
+                el.textContent = target.toLocaleString();
+            }
+        };
+        update();
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+}
+
+/* ==========================================
+   Hero Particle Effect
+   ========================================== */
+function initHeroParticles() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'hero-particle';
+        const size = Math.random() * 3 + 1;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 12 + 8;
+        const hue = Math.random() > 0.5 ? '20, 100%, 56%' : '187, 96%, 43%';
+        p.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${left}%;
+            bottom: -10px;
+            background: hsla(${hue}, ${Math.random() * 0.4 + 0.2});
+            animation-duration: ${duration}s;
+            animation-delay: ${delay}s;
+        `;
+        container.appendChild(p);
+    }
+}
+
+/* ==========================================
+   Interactive Permafrost Retreat Map
+   Canvas-based visualizer (2025–2075)
+   ========================================== */
 function initPermafrostMap() {
-  const canvas = document.getElementById('permafrost-map-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('permafrostMap');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
 
-  function resize() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = rect.height * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    drawMap(ctx, canvas);
-  }
+    const scenarioSelect = document.getElementById('scenarioSelect');
+    const yearSlider = document.getElementById('yearSlider');
+    const yearDisplay = document.getElementById('yearDisplay');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const infoPanel = document.getElementById('mapInfoPanel');
 
-  window.addEventListener('resize', resize);
-  resize();
+    let animationId = null;
+    let isPlaying = false;
 
-  // Controls
-  const slider = document.getElementById('year-slider');
-  const yearLabel = document.getElementById('year-label');
-  const scenarioSelect = document.getElementById('scenario-select');
-  const playBtn = document.getElementById('play-btn');
+    // Region data
+    const regions = [
+        { name: 'Western Siberia', x: 0.62, y: 0.22, baseThaw: 0.15, sensitivity: 1.2 },
+        { name: 'Eastern Siberia', x: 0.75, y: 0.18, baseThaw: 0.10, sensitivity: 0.9 },
+        { name: 'Central Alaska', x: 0.15, y: 0.28, baseThaw: 0.12, sensitivity: 1.0 },
+        { name: 'Northern Canada', x: 0.30, y: 0.20, baseThaw: 0.08, sensitivity: 0.85 },
+        { name: 'Yamal Peninsula', x: 0.55, y: 0.15, baseThaw: 0.18, sensitivity: 1.3 },
+        { name: 'Laptev Sea Coast', x: 0.72, y: 0.12, baseThaw: 0.14, sensitivity: 1.1 },
+        { name: 'Mackenzie Delta', x: 0.22, y: 0.22, baseThaw: 0.11, sensitivity: 0.95 },
+        { name: 'Scandinavian Arctic', x: 0.48, y: 0.25, baseThaw: 0.09, sensitivity: 0.8 },
+    ];
 
-  if (slider) {
-    slider.addEventListener('input', (e) => {
-      mapState.year = parseInt(e.target.value, 10);
-      yearLabel.textContent = mapState.year;
-      drawMap(ctx, canvas);
-      updateMapInfo();
-    });
-  }
+    const scenarioMultipliers = {
+        low: 0.6,
+        moderate: 1.0,
+        high: 1.8
+    };
 
-  if (scenarioSelect) {
-    scenarioSelect.addEventListener('change', (e) => {
-      mapState.scenario = e.target.value;
-      drawMap(ctx, canvas);
-      updateMapInfo();
-    });
-  }
+    function getThawFraction(region, year, scenario) {
+        const yearFactor = (year - 2025) / 50;
+        const multiplier = scenarioMultipliers[scenario] || 1.0;
+        return Math.min(1, region.baseThaw + yearFactor * region.sensitivity * multiplier * 0.6);
+    }
 
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (mapState.playing) {
-        mapState.playing = false;
-        playBtn.textContent = '▶ Play';
-        cancelAnimationFrame(mapState.animFrame);
-      } else {
-        if (mapState.year >= MAP_CONFIG.endYear) mapState.year = MAP_CONFIG.startYear;
-        mapState.playing = true;
-        playBtn.textContent = '⏸ Pause';
-        animateMap(ctx, canvas, slider, yearLabel);
-      }
-    });
-  }
+    function drawMap(year, scenario) {
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
 
-  updateMapInfo();
-}
+        // Background — ocean
+        ctx.fillStyle = '#0b1628';
+        ctx.fillRect(0, 0, w, h);
 
-function animateMap(ctx, canvas, slider, yearLabel) {
-  if (!mapState.playing) return;
-  mapState.year += 1;
-  if (mapState.year > MAP_CONFIG.endYear) {
-    mapState.playing = false;
-    document.getElementById('play-btn').textContent = '▶ Play';
-    return;
-  }
-  slider.value = mapState.year;
-  yearLabel.textContent = mapState.year;
-  drawMap(ctx, canvas);
-  updateMapInfo();
-  mapState.animFrame = setTimeout(() => animateMap(ctx, canvas, slider, yearLabel), 200);
-}
+        // Draw land masses (simplified arctic view)
+        drawLandMasses(ctx, w, h);
 
-function drawMap(ctx, canvas) {
-  const w = canvas.width / window.devicePixelRatio;
-  const h = canvas.height / window.devicePixelRatio;
-  ctx.clearRect(0, 0, w, h);
+        // Draw permafrost zones for each region
+        regions.forEach(region => {
+            const thaw = getThawFraction(region, year, scenario);
+            const rx = region.x * w;
+            const ry = region.y * h;
+            const baseRadius = 35;
 
-  // Background — dark ocean
-  ctx.fillStyle = '#0a1628';
-  ctx.fillRect(0, 0, w, h);
+            // Continuous permafrost (shrinks)
+            const continuousRadius = baseRadius * (1 - thaw * 0.7);
+            if (continuousRadius > 5) {
+                ctx.beginPath();
+                ctx.arc(rx, ry, continuousRadius, 0, Math.PI * 2);
+                ctx.fillStyle = '#1a3a5c';
+                ctx.fill();
+            }
 
-  // Grid lines
-  ctx.strokeStyle = 'rgba(170, 212, 245, 0.06)';
-  ctx.lineWidth = 0.5;
-  for (let i = 0; i < w; i += 40) {
-    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
-  }
-  for (let j = 0; j < h; j += 40) {
-    ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(w, j); ctx.stroke();
-  }
+            // Discontinuous ring
+            const disRadius = baseRadius * (1 - thaw * 0.3);
+            ctx.beginPath();
+            ctx.arc(rx, ry, disRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = '#3a7ca5';
+            ctx.lineWidth = 3;
+            ctx.stroke();
 
-  // Arctic circle line
-  const arcticY = h * 0.38;
-  ctx.setLineDash([6, 6]);
-  ctx.strokeStyle = 'rgba(170, 212, 245, 0.2)';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, arcticY);
-  ctx.lineTo(w, arcticY);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = 'rgba(170, 212, 245, 0.35)';
-  ctx.font = '11px Segoe UI';
-  ctx.fillText('Arctic Circle 66.5°N', 10, arcticY - 6);
+            // Sporadic ring
+            ctx.beginPath();
+            ctx.arc(rx, ry, baseRadius + 5, 0, Math.PI * 2);
+            ctx.strokeStyle = '#81c3d7';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
 
-  // Permafrost zones
-  const elapsed = mapState.year - MAP_CONFIG.startYear;
-  const rate = MAP_CONFIG.scenarios[mapState.scenario].retreatRate;
-  const retreat = elapsed * rate;
+            // Thawed area (grows with thaw)
+            const thawRadius = baseRadius * thaw * 0.8;
+            if (thawRadius > 3) {
+                ctx.beginPath();
+                ctx.arc(rx, ry, thawRadius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 165, 116, ${0.3 + thaw * 0.4})`;
+                ctx.fill();
+            }
 
-  // Draw permafrost ground (shrinks from top)
-  const permafrostTop = Math.min(h * 0.12 + retreat * 1.8, h * 0.8);
-  const grad = ctx.createLinearGradient(0, 0, 0, h);
-  grad.addColorStop(0, 'rgba(170, 212, 245, 0.03)');
-  grad.addColorStop(permafrostTop / h, 'rgba(93, 173, 226, 0.15)');
-  grad.addColorStop(1, 'rgba(93, 173, 226, 0.02)');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, w, h);
+            // Methane hotspot indicator
+            if (thaw > 0.3) {
+                const hotspotAlpha = (thaw - 0.3) * 1.4;
+                ctx.beginPath();
+                ctx.arc(rx, ry, 8 + thaw * 12, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 107, 53, ${Math.min(hotspotAlpha, 0.6)})`;
+                ctx.fill();
 
-  // Continuous permafrost zone
-  const contTop = Math.min(h * 0.05 + retreat * 0.6, h * 0.5);
-  ctx.fillStyle = 'rgba(93, 173, 226, 0.22)';
-  ctx.fillRect(0, 0, w, contTop);
+                // Pulsing ring
+                const pulseSize = 15 + Math.sin(Date.now() / 500) * 5;
+                ctx.beginPath();
+                ctx.arc(rx, ry, pulseSize + thaw * 10, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(255, 107, 53, ${Math.min(hotspotAlpha * 0.5, 0.4)})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
 
-  // Discontinuous permafrost zone
-  const discontTop = Math.min(contTop + h * 0.12 + retreat * 0.8, h * 0.7);
-  ctx.fillStyle = 'rgba(93, 173, 226, 0.10)';
-  ctx.fillRect(0, contTop, w, discontTop - contTop);
+            // Region label
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.font = '10px system-ui';
+            ctx.textAlign = 'center';
+            ctx.fillText(region.name, rx, ry + baseRadius + 16);
+        });
 
-  // Thawed zone label
-  if (retreat > 5) {
-    ctx.fillStyle = 'rgba(255, 140, 0, 0.15)';
-    ctx.fillRect(0, 0, w, contTop * 0.6);
-    ctx.fillStyle = 'rgba(255, 140, 0, 0.6)';
-    ctx.font = 'bold 12px Segoe UI';
-    ctx.fillText('THAWED ZONE', w * 0.42, contTop * 0.3);
-  }
+        // Year overlay
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.font = 'bold 16px system-ui';
+        ctx.textAlign = 'left';
+        ctx.fillText(`Year: ${year}`, 15, 25);
+        ctx.font = '12px system-ui';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        const scenarioLabel = scenario.charAt(0).toUpperCase() + scenario.slice(1) + ' Warming';
+        ctx.fillText(scenarioLabel, 15, 42);
+    }
 
-  // Region bubbles with methane emission indicators
-  MAP_CONFIG.regions.forEach((region) => {
-    const x = region.cx * w;
-    const y = region.cy * h;
-    const thawFactor = 1 + retreat * 0.015;
-    const r = region.baseRadius * thawFactor;
+    function drawLandMasses(ctx, w, h) {
+        // Simplified land shapes  
+        ctx.fillStyle = '#1a2e1a';
+        
+        // North America
+        ctx.beginPath();
+        ctx.moveTo(w * 0.05, h * 0.1);
+        ctx.lineTo(w * 0.35, h * 0.08);
+        ctx.lineTo(w * 0.38, h * 0.45);
+        ctx.lineTo(w * 0.25, h * 0.55);
+        ctx.lineTo(w * 0.05, h * 0.4);
+        ctx.closePath();
+        ctx.fill();
 
-    // Glow
-    const glowGrad = ctx.createRadialGradient(x, y, r * 0.3, x, y, r * 1.5);
-    glowGrad.addColorStop(0, 'rgba(255, 140, 0, 0.25)');
-    glowGrad.addColorStop(1, 'rgba(255, 140, 0, 0)');
-    ctx.fillStyle = glowGrad;
-    ctx.beginPath();
-    ctx.arc(x, y, r * 1.5, 0, Math.PI * 2);
-    ctx.fill();
+        // Greenland
+        ctx.beginPath();
+        ctx.ellipse(w * 0.40, h * 0.15, w * 0.04, h * 0.12, 0, 0, Math.PI * 2);
+        ctx.fill();
 
-    // Circle
-    ctx.fillStyle = region.color + '33';
-    ctx.strokeStyle = region.color;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
+        // Scandinavia
+        ctx.beginPath();
+        ctx.moveTo(w * 0.44, h * 0.15);
+        ctx.lineTo(w * 0.50, h * 0.08);
+        ctx.lineTo(w * 0.52, h * 0.40);
+        ctx.lineTo(w * 0.46, h * 0.42);
+        ctx.closePath();
+        ctx.fill();
 
-    // Label
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 13px Segoe UI';
-    ctx.textAlign = 'center';
-    ctx.fillText(region.name, x, y - r - 8);
+        // Russia / Siberia
+        ctx.beginPath();
+        ctx.moveTo(w * 0.50, h * 0.06);
+        ctx.lineTo(w * 0.95, h * 0.05);
+        ctx.lineTo(w * 0.92, h * 0.50);
+        ctx.lineTo(w * 0.55, h * 0.48);
+        ctx.closePath();
+        ctx.fill();
 
-    // Methane emission value
-    const methane = (retreat * (region.baseRadius / 25) * 0.8).toFixed(1);
-    ctx.fillStyle = var_methane_color(methane);
-    ctx.font = '11px Segoe UI';
-    ctx.fillText(`CH₄: +${methane} Tg`, x, y + 5);
-    ctx.textAlign = 'start';
-  });
-
-  // Year display on canvas
-  ctx.fillStyle = 'rgba(255, 140, 0, 0.9)';
-  ctx.font = 'bold 28px Segoe UI';
-  ctx.textAlign = 'right';
-  ctx.fillText(mapState.year, w - 18, 38);
-  ctx.textAlign = 'start';
-}
-
-function var_methane_color(val) {
-  if (val < 5) return '#ffc107';
-  if (val < 15) return '#ff8c00';
-  return '#e53935';
-}
-
-function updateMapInfo() {
-  const info = document.getElementById('map-info-text');
-  if (!info) return;
-  const elapsed = mapState.year - MAP_CONFIG.startYear;
-  const rate = MAP_CONFIG.scenarios[mapState.scenario].retreatRate;
-  const retreatKm = (elapsed * rate * 12).toFixed(0);
-  const carbonReleased = (elapsed * rate * 3.2).toFixed(1);
-  info.innerHTML = `Permafrost line retreated <strong>~${retreatKm} km</strong> northward.<br>Est. carbon released: <strong>${carbonReleased} Gt</strong>`;
-}
-
-/* ──────────────────────────────────────────────
-   2. Methane vs. CO₂ Simulator
-   ────────────────────────────────────────────── */
-
-let simChart = null;
-
-function initMethaneSimulator() {
-  const methaneSlider = document.getElementById('methane-release');
-  const co2Slider = document.getElementById('co2-release');
-  const timeframeSelect = document.getElementById('sim-timeframe');
-
-  if (!methaneSlider || !co2Slider) return;
-
-  const methaneVal = document.getElementById('methane-val');
-  const co2Val = document.getElementById('co2-val');
-
-  methaneSlider.addEventListener('input', () => {
-    methaneVal.textContent = methaneSlider.value + ' Tg CH₄/yr';
-    updateSimulation();
-  });
-  co2Slider.addEventListener('input', () => {
-    co2Val.textContent = co2Slider.value + ' Gt CO₂/yr';
-    updateSimulation();
-  });
-  if (timeframeSelect) {
-    timeframeSelect.addEventListener('change', updateSimulation);
-  }
-
-  createSimChart();
-  updateSimulation();
-}
-
-function createSimChart() {
-  const canvas = document.getElementById('sim-chart');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  simChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: [],
-      datasets: [
-        {
-          label: 'Methane (CH₄) Warming Effect',
-          data: [],
-          borderColor: '#ff8c00',
-          backgroundColor: 'rgba(255, 140, 0, 0.1)',
-          tension: 0.4,
-          fill: true,
-          pointRadius: 2,
-        },
-        {
-          label: 'CO₂ Warming Effect',
-          data: [],
-          borderColor: '#5dade2',
-          backgroundColor: 'rgba(93, 173, 226, 0.1)',
-          tension: 0.4,
-          fill: true,
-          pointRadius: 2,
-        },
-        {
-          label: 'Combined Forcing',
-          data: [],
-          borderColor: '#e53935',
-          backgroundColor: 'rgba(229, 57, 53, 0.08)',
-          borderDash: [6, 4],
-          tension: 0.4,
-          fill: false,
-          pointRadius: 0,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          labels: { color: '#9fb3c8', font: { size: 12 } },
-        },
-        tooltip: {
-          backgroundColor: 'rgba(11, 29, 58, 0.9)',
-          titleColor: '#e0e6ed',
-          bodyColor: '#9fb3c8',
-        },
-      },
-      scales: {
-        x: {
-          title: { display: true, text: 'Years', color: '#9fb3c8' },
-          ticks: { color: '#9fb3c8' },
-          grid: { color: 'rgba(170, 212, 245, 0.06)' },
-        },
-        y: {
-          title: { display: true, text: 'Radiative Forcing (W/m²)', color: '#9fb3c8' },
-          ticks: { color: '#9fb3c8' },
-          grid: { color: 'rgba(170, 212, 245, 0.06)' },
-        },
-      },
-    },
-  });
-}
-
-function updateSimulation() {
-  if (!simChart) return;
-
-  const methaneRate = parseFloat(document.getElementById('methane-release').value);
-  const co2Rate = parseFloat(document.getElementById('co2-release').value);
-  const timeframeEl = document.getElementById('sim-timeframe');
-  const years = timeframeEl ? parseInt(timeframeEl.value) : 100;
-
-  const labels = [];
-  const methaneData = [];
-  const co2Data = [];
-  const combinedData = [];
-
-  // CH₄ half-life ≈ 12 years; CO₂ persists for centuries
-  for (let y = 0; y <= years; y += (years <= 20 ? 1 : 5)) {
-    labels.push('Year ' + y);
-
-    // Simplified radiative forcing model
-    // Methane: high initial forcing, decays
-    const ch4Accumulated = methaneRate * 12 * (1 - Math.exp(-y / 12));
-    const ch4Forcing = ch4Accumulated * 0.00037; // W/m² per Tg
-
-    // CO₂: persistent, accumulates steadily (airborne fraction ~0.5)
-    const co2Accumulated = co2Rate * y * 0.5;
-    const co2Forcing = 5.35 * Math.log(1 + co2Accumulated / 880); // ln approximation
-
-    methaneData.push(parseFloat(ch4Forcing.toFixed(3)));
-    co2Data.push(parseFloat(co2Forcing.toFixed(3)));
-    combinedData.push(parseFloat((ch4Forcing + co2Forcing).toFixed(3)));
-  }
-
-  simChart.data.labels = labels;
-  simChart.data.datasets[0].data = methaneData;
-  simChart.data.datasets[1].data = co2Data;
-  simChart.data.datasets[2].data = combinedData;
-  simChart.update();
-
-  // Update insight
-  updateSimInsight(methaneRate, co2Rate, years, methaneData, co2Data);
-  // Update gas comparison cards
-  updateGasCards(methaneRate);
-}
-
-function updateSimInsight(methaneRate, co2Rate, years, methaneData, co2Data) {
-  const insight = document.getElementById('sim-insight-text');
-  if (!insight) return;
-
-  const peakCH4 = Math.max(...methaneData);
-  const finalCO2 = co2Data[co2Data.length - 1];
-  const ratio20yr = (methaneRate > 0) ? ((peakCH4 / (finalCO2 || 0.001)) * 100).toFixed(0) : 0;
-
-  insight.innerHTML = `At <strong>${methaneRate} Tg CH₄/yr</strong>, methane creates a peak forcing of <strong>${peakCH4.toFixed(2)} W/m²</strong> within ~12 years, then stabilizes as it decays. Meanwhile, CO₂ at <strong>${co2Rate} Gt/yr</strong> accumulates relentlessly, reaching <strong>${finalCO2.toFixed(2)} W/m²</strong> by year ${years}. In the short term, methane is the dominant warming agent — this is why permafrost thaw is so dangerous.`;
-}
-
-function updateGasCards(methaneRate) {
-  const gwp20 = document.getElementById('gwp-20yr');
-  const gwp100 = document.getElementById('gwp-100yr');
-  if (gwp20) gwp20.textContent = '×80';
-  if (gwp100) gwp100.textContent = '×28';
-
-  const equivEl = document.getElementById('co2-equivalent');
-  if (equivEl) {
-    const equiv = (methaneRate * 80 / 1000).toFixed(1);
-    equivEl.textContent = equiv + ' Gt CO₂-eq (20yr)';
-  }
-}
-
-/* ──────────────────────────────────────────────
-   3. Feedback Loop Animation
-   ────────────────────────────────────────────── */
-
-function initFeedbackLoopAnimation() {
-  const steps = document.querySelectorAll('.loop-step');
-  if (!steps.length) return;
-
-  let current = 0;
-  setInterval(() => {
-    steps.forEach((s) => s.style.borderColor = 'rgba(170, 212, 245, 0.15)');
-    steps[current].style.borderColor = '#ff8c00';
-    steps[current].style.boxShadow = '0 0 18px rgba(255, 140, 0, 0.3)';
-    setTimeout(() => {
-      steps[current].style.boxShadow = 'none';
-    }, 800);
-    current = (current + 1) % steps.length;
-  }, 1200);
-}
-
-/* ──────────────────────────────────────────────
-   4. Scroll-triggered Animations
-   ────────────────────────────────────────────── */
-
-function initScrollAnimations() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+        // Add subtle grid
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < w; i += 40) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, h);
+            ctx.stroke();
         }
-      });
-    },
-    { threshold: 0.15 }
-  );
+        for (let j = 0; j < h; j += 40) {
+            ctx.beginPath();
+            ctx.moveTo(0, j);
+            ctx.lineTo(w, j);
+            ctx.stroke();
+        }
+    }
 
-  document.querySelectorAll('.card, .impact-event, .story-card, .action-card, .gas-card').forEach((el) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
+    function updateMap() {
+        const year = parseInt(yearSlider.value);
+        const scenario = scenarioSelect.value;
+        yearDisplay.textContent = year;
+        drawMap(year, scenario);
+    }
+
+    // Mouse hover info
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) / rect.width;
+        const my = (e.clientY - rect.top) / rect.height;
+        
+        let closest = null;
+        let minDist = Infinity;
+        
+        regions.forEach(r => {
+            const dist = Math.hypot(mx - r.x, my - r.y);
+            if (dist < 0.08 && dist < minDist) {
+                minDist = dist;
+                closest = r;
+            }
+        });
+
+        if (closest && infoPanel) {
+            const scenario = scenarioSelect.value;
+            const year = parseInt(yearSlider.value);
+            const thaw = getThawFraction(closest, year, scenario);
+            const thawPct = (thaw * 100).toFixed(1);
+            const methaneRisk = thaw > 0.5 ? 'Critical' : thaw > 0.3 ? 'High' : thaw > 0.15 ? 'Moderate' : 'Low';
+            const riskColor = thaw > 0.5 ? '#ef4444' : thaw > 0.3 ? '#f59e0b' : thaw > 0.15 ? '#06b6d4' : '#10b981';
+            
+            infoPanel.innerHTML = `
+                <h4><i class="fas fa-map-marker-alt" style="color:${riskColor}"></i> ${closest.name}</h4>
+                <p><strong>Thaw Progress:</strong> ${thawPct}% — <strong>Methane Risk:</strong> <span style="color:${riskColor};font-weight:700">${methaneRisk}</span></p>
+                <p><strong>Sensitivity Factor:</strong> ${closest.sensitivity}× — <strong>Year:</strong> ${year}</p>
+            `;
+        }
+    });
+
+    // Play/Pause animation
+    function startAnimation() {
+        isPlaying = true;
+        playBtn.disabled = true;
+        pauseBtn.disabled = false;
+
+        const animate = () => {
+            if (!isPlaying) return;
+            let year = parseInt(yearSlider.value);
+            if (year < 2075) {
+                year += 5;
+                yearSlider.value = year;
+                updateMap();
+                animationId = setTimeout(() => requestAnimationFrame(animate), 800);
+            } else {
+                stopAnimation();
+            }
+        };
+        animate();
+    }
+
+    function stopAnimation() {
+        isPlaying = false;
+        playBtn.disabled = false;
+        pauseBtn.disabled = true;
+        if (animationId) clearTimeout(animationId);
+    }
+
+    function resetMap() {
+        stopAnimation();
+        yearSlider.value = 2025;
+        updateMap();
+    }
+
+    playBtn.addEventListener('click', startAnimation);
+    pauseBtn.addEventListener('click', stopAnimation);
+    resetBtn.addEventListener('click', resetMap);
+    yearSlider.addEventListener('input', updateMap);
+    scenarioSelect.addEventListener('change', updateMap);
+
+    // Initial draw
+    updateMap();
+}
+
+/* ==========================================
+   Methane vs CO₂ Warming Simulator
+   Chart.js-powered interactive module
+   ========================================== */
+function initMethaneSimulator() {
+    const warmingCanvas = document.getElementById('warmingChart');
+    const forcingCanvas = document.getElementById('forcingChart');
+    if (!warmingCanvas || !forcingCanvas) return;
+
+    const methaneSlider = document.getElementById('methaneRate');
+    const co2Slider = document.getElementById('co2Emissions');
+    const timeSlider = document.getElementById('timeframe');
+    const methaneVal = document.getElementById('methaneRateValue');
+    const co2Val = document.getElementById('co2EmissionsValue');
+    const timeVal = document.getElementById('timeframeValue');
+    const simulateBtn = document.getElementById('simulateBtn');
+
+    // Chart.js default dark theme
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+
+    // Warming chart
+    const warmingChart = new Chart(warmingCanvas, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Methane Warming (°C)',
+                    data: [],
+                    borderColor: '#ff6b35',
+                    backgroundColor: 'rgba(255, 107, 53, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                },
+                {
+                    label: 'CO₂ Warming (°C)',
+                    data: [],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                },
+                {
+                    label: 'Combined (°C)',
+                    data: [],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 2.5,
+                    borderDash: [6, 3],
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, padding: 15 } },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                    titleColor: '#fff',
+                    bodyColor: '#94a3b8',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1,
+                }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Year', color: '#94a3b8' }, grid: { display: false } },
+                y: { title: { display: true, text: 'Temperature Change (°C)', color: '#94a3b8' }, beginAtZero: true }
+            }
+        }
+    });
+
+    // Forcing chart
+    const forcingChart = new Chart(forcingCanvas, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Methane Forcing (W/m²)',
+                    data: [],
+                    backgroundColor: 'rgba(255, 107, 53, 0.7)',
+                    borderColor: '#ff6b35',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                },
+                {
+                    label: 'CO₂ Forcing (W/m²)',
+                    data: [],
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: '#3b82f6',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, padding: 15 } },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                    titleColor: '#fff',
+                    bodyColor: '#94a3b8',
+                }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Year', color: '#94a3b8' }, grid: { display: false } },
+                y: { title: { display: true, text: 'Radiative Forcing (W/m²)', color: '#94a3b8' }, beginAtZero: true }
+            }
+        }
+    });
+
+    // Update slider display values
+    methaneSlider.addEventListener('input', () => { methaneVal.textContent = methaneSlider.value + ' Tg/yr'; });
+    co2Slider.addEventListener('input', () => { co2Val.textContent = co2Slider.value + ' Gt/yr'; });
+    timeSlider.addEventListener('input', () => { timeVal.textContent = timeSlider.value + ' years'; });
+
+    function runSimulation() {
+        const methaneRate = parseFloat(methaneSlider.value);
+        const co2Rate = parseFloat(co2Slider.value);
+        const timeframe = parseInt(timeSlider.value);
+
+        const years = [];
+        const methaneWarming = [];
+        const co2Warming = [];
+        const combined = [];
+        const methaneForcing = [];
+        const co2Forcing = [];
+
+        for (let y = 0; y <= timeframe; y += 5) {
+            const year = 2025 + y;
+            years.push(year);
+
+            // Simplified warming model
+            // Methane: high initial potency, decays (~12yr half-life in atmosphere)
+            const methaneAccum = methaneRate * (1 - Math.exp(-y / 12)) * 12;
+            const ch4Warm = methaneAccum * 0.00036; // simplified sensitivity
+            
+            // CO₂: slow accumulation, long persistence
+            const co2Accum = co2Rate * y * 0.45; // airborne fraction ~45%
+            const co2Warm = co2Accum * 0.0054 * Math.log(1 + co2Accum / 280) / Math.log(2);
+
+            methaneWarming.push(parseFloat(ch4Warm.toFixed(3)));
+            co2Warming.push(parseFloat(co2Warm.toFixed(3)));
+            combined.push(parseFloat((ch4Warm + co2Warm).toFixed(3)));
+
+            // Radiative forcing approximations
+            const ch4Force = ch4Warm * 3.7 / 1.1;
+            const co2Force = co2Warm * 3.7 / 1.1;
+            methaneForcing.push(parseFloat(ch4Force.toFixed(3)));
+            co2Forcing.push(parseFloat(co2Force.toFixed(3)));
+        }
+
+        // Update warming chart
+        warmingChart.data.labels = years;
+        warmingChart.data.datasets[0].data = methaneWarming;
+        warmingChart.data.datasets[1].data = co2Warming;
+        warmingChart.data.datasets[2].data = combined;
+        warmingChart.update();
+
+        // Update forcing chart
+        forcingChart.data.labels = years;
+        forcingChart.data.datasets[0].data = methaneForcing;
+        forcingChart.data.datasets[1].data = co2Forcing;
+        forcingChart.update();
+
+        // Update insights
+        updateInsights(methaneRate, co2Rate, timeframe, combined[combined.length - 1]);
+    }
+
+    function updateInsights(methaneRate, co2Rate, timeframe, totalWarming) {
+        const insightsEl = document.getElementById('simulatorInsights');
+        if (!insightsEl) return;
+
+        let severity = 'moderate';
+        if (totalWarming > 2.0) severity = 'extreme';
+        else if (totalWarming > 1.0) severity = 'severe';
+        else if (totalWarming > 0.5) severity = 'significant';
+
+        const warningMessages = {
+            extreme: `At ${methaneRate} Tg/yr methane + ${co2Rate} Gt/yr CO₂, projected additional warming of <strong>${totalWarming.toFixed(2)}°C</strong> in ${timeframe} years. This crosses multiple tipping points.`,
+            severe: `Projected additional warming of <strong>${totalWarming.toFixed(2)}°C</strong> over ${timeframe} years. Significant permafrost loss and methane feedback amplification expected.`,
+            significant: `Projected warming of <strong>${totalWarming.toFixed(2)}°C</strong>. Widespread permafrost degradation likely, requiring urgent mitigation.`,
+            moderate: `Projected warming of <strong>${totalWarming.toFixed(2)}°C</strong>. Continued permafrost loss, but within potentially manageable bounds with rapid action.`
+        };
+
+        insightsEl.innerHTML = `
+            <div class="insight-card warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h4>Simulation Result</h4>
+                    <p>${warningMessages[severity]}</p>
+                </div>
+            </div>
+            <div class="insight-card info">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <h4>Key Insight</h4>
+                    <p>Methane is <strong>80× more potent</strong> than CO₂ over 20 years. Even small reductions in methane release buy critical time for long-term CO₂ solutions.</p>
+                </div>
+            </div>
+        `;
+    }
+
+    simulateBtn.addEventListener('click', runSimulation);
+
+    // Run initial simulation
+    runSimulation();
+}
+
+/* ==========================================
+   Infrastructure Bar Animation
+   ========================================== */
+function initInfraBarAnimation() {
+    const bars = document.querySelectorAll('.infra-fill');
+    if (!bars.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const fill = entry.target;
+                const width = fill.style.width;
+                fill.style.width = '0%';
+                setTimeout(() => { fill.style.width = width; }, 100);
+                observer.unobserve(fill);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    bars.forEach(bar => observer.observe(bar));
 }

@@ -1,486 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Permafrost Thaw &amp; The Methane Time Bomb — EcoLife Hub</title>
-  <meta name="description" content="Global Crisis Alert: Permafrost is thawing at an unprecedented rate, releasing ancient methane. Explore interactive maps, simulators, and action plans." />
-  <link rel="stylesheet" href="../permafrost-methane-crisis.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permafrost Thaw & Methane Time Bomb - EcoLife Hub</title>
+    <meta name="description" content="Explore the permafrost methane crisis: interactive maps, methane vs CO₂ simulator, community impacts, and action plans to address this Level 3 emergency.">
+    <link rel="stylesheet" href="../permafrost-methane-crisis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
-  <nav class="nav-bar">
-    <div class="nav-container">
-      <div class="nav-logo"><h2>🌍 EcoLife Hub</h2></div>
-      <div class="nav-links">
-        <a href="../../index.html">Home</a>
-        <a href="#permafrost-map-section">Permafrost Map</a>
-        <a href="#simulator-section">CH₄ Simulator</a>
-        <a href="#community-section">Community Impact</a>
-        <a href="#action-section">Action Plan</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ═══════════════════ HERO ═══════════════════ -->
-  <header class="hero-crisis">
-    <div class="crisis-badge">⚠ Impact Severity: Level 3 — Critical</div>
-    <h1>Permafrost Thaw &amp;<br /><span>The Methane Time Bomb</span></h1>
-    <p class="hero-subtitle">
-      A sleeping giant is waking up in the Arctic. Permafrost — ground frozen for millennia — is thawing at an
-      unprecedented rate, unleashing ancient carbon and methane into our atmosphere.
-    </p>
-
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number">1,500</span>
-        <span class="stat-unit">Billion Tons</span>
-        <span class="stat-label">Carbon Locked in Permafrost</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">×80</span>
-        <span class="stat-unit">Potency</span>
-        <span class="stat-label">CH₄ vs CO₂ (20-yr)</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">4.5M</span>
-        <span class="stat-unit">km² at risk</span>
-        <span class="stat-label">Permafrost Area Thawing</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">2×</span>
-        <span class="stat-unit">vs Atmosphere</span>
-        <span class="stat-label">Carbon Vault Size</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- ═══════════════════ CRISIS OVERVIEW ═══════════════════ -->
-  <section class="section" id="crisis-overview">
-    <div class="section-header">
-      <h2>Understanding the Crisis</h2>
-      <p>The three pillars of the permafrost methane emergency and why it qualifies as a Level 3 Critical threat.</p>
-    </div>
-
-    <div class="crisis-grid">
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">🏔️</div>
-        <span class="tag tag-critical">Critical</span>
-        <h3>The Carbon Vault</h3>
-        <p>Northern permafrost holds approximately <strong>1,500 billion tons of carbon</strong> — almost double the amount currently in the entire atmosphere. This ancient organic matter has been locked away for tens of thousands of years.</p>
-      </div>
-
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">💨</div>
-        <span class="tag tag-severe">Severe</span>
-        <h3>Methane Release</h3>
-        <p>As ice melts, dormant microbes awaken and consume ancient organic matter (dead plants &amp; animals). In wet, oxygen-poor soils, these microbes produce <strong>Methane (CH₄)</strong> — a potent greenhouse gas.</p>
-      </div>
-
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">🔄</div>
-        <span class="tag tag-critical">Critical</span>
-        <h3>The Multiplier Effect</h3>
-        <p>Methane is <strong>over 80× more potent</strong> at trapping heat than CO₂ over 20 years. More warming → more thaw → more methane — a devastating <strong>positive feedback loop</strong>.</p>
-      </div>
-
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">🏚️</div>
-        <span class="tag tag-severe">Severe</span>
-        <h3>Infrastructure Collapse</h3>
-        <p>Thawing ground causes <strong>"thermokarst"</strong> — collapsing roads, pipelines, and entire communities built on previously stable frozen ground across the Arctic.</p>
-      </div>
-
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">🌡️</div>
-        <span class="tag tag-critical">Critical</span>
-        <h3>Runaway Climate Change</h3>
-        <p>If a significant portion of this "carbon bomb" detonates, it could render human emission-reduction efforts <strong>mathematically irrelevant</strong>, pushing the climate past irreversible tipping points.</p>
-      </div>
-
-      <div class="card crisis-card">
-        <div class="crisis-card-icon">🦠</div>
-        <span class="tag tag-warning">Warning</span>
-        <h3>Ancient Pathogens</h3>
-        <p>The thaw risks releasing <strong>ancient, dormant viruses and bacteria</strong> trapped in ice for millennia — organisms modern immune systems have never encountered.</p>
-      </div>
-    </div>
-
-    <!-- Feedback Loop Visualizer -->
-    <div class="feedback-loop">
-      <div class="loop-step">🌡️ Arctic Warming</div>
-      <span class="loop-arrow">→</span>
-      <div class="loop-step">🧊 Permafrost Thaws</div>
-      <span class="loop-arrow">→</span>
-      <div class="loop-step">🦠 Microbes Activate</div>
-      <span class="loop-arrow">→</span>
-      <div class="loop-step">💨 Methane Released</div>
-      <span class="loop-arrow">→</span>
-      <div class="loop-step">🔥 More Warming</div>
-      <span class="loop-arrow">↻</span>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ INTERACTIVE PERMAFROST MAP ═══════════════════ -->
-  <section class="section" id="permafrost-map-section">
-    <div class="section-header">
-      <h2>Interactive Permafrost Retreat Map</h2>
-      <p>Visualize the projected retreat of the permafrost line across Siberia, Alaska, and Canada over the next 50 years under different warming scenarios.</p>
-    </div>
-
-    <div class="map-controls">
-      <div>
-        <label for="scenario-select">Warming Scenario:</label><br />
-        <select id="scenario-select">
-          <option value="low">Low Warming (+1.5 °C)</option>
-          <option value="moderate" selected>Moderate Warming (+2.5 °C)</option>
-          <option value="high">High Warming (+4.0 °C)</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="map-wrapper">
-      <canvas id="permafrost-map-canvas" class="map-canvas"></canvas>
-      <div class="map-info-overlay" id="map-info-overlay">
-        <strong style="color: #ff8c00;">Permafrost Status</strong><br />
-        <span id="map-info-text">Permafrost line retreated ~0 km northward.<br />Est. carbon released: 0 Gt</span>
-      </div>
-    </div>
-
-    <div class="timeline-slider">
-      <span>2025</span>
-      <input type="range" id="year-slider" min="2025" max="2075" value="2025" step="1" />
-      <span id="year-label">2025</span>
-      <button id="play-btn">▶ Play</button>
-      <span>2075</span>
-    </div>
-
-    <div class="map-legend">
-      <div class="legend-item">
-        <div class="legend-swatch" style="background: rgba(93, 173, 226, 0.35);"></div>
-        Continuous Permafrost
-      </div>
-      <div class="legend-item">
-        <div class="legend-swatch" style="background: rgba(93, 173, 226, 0.15);"></div>
-        Discontinuous Permafrost
-      </div>
-      <div class="legend-item">
-        <div class="legend-swatch" style="background: rgba(255, 140, 0, 0.25);"></div>
-        Thawed Zone
-      </div>
-      <div class="legend-item">
-        <div class="legend-swatch" style="background: #ff8c00;"></div>
-        Active Methane Emission
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ METHANE VS CO₂ SIMULATOR ═══════════════════ -->
-  <section class="section" id="simulator-section">
-    <div class="section-header">
-      <h2>Methane vs. CO₂ Warming Simulator</h2>
-      <p>Explore the immediate vs. long-term heat-trapping effects of methane releases from thawing permafrost compared with CO₂ emissions.</p>
-    </div>
-
-    <div class="simulator-layout">
-      <div class="card">
-        <h3>Simulation Controls</h3>
-        <div class="sim-controls">
-          <div class="sim-control-group">
-            <label for="methane-release">Annual Methane Release from Permafrost:</label>
-            <input type="range" id="methane-release" min="0" max="500" value="100" step="10" />
-            <div class="sim-value-display" id="methane-val">100 Tg CH₄/yr</div>
-          </div>
-          <div class="sim-control-group">
-            <label for="co2-release">Annual CO₂ Emissions (Global):</label>
-            <input type="range" id="co2-release" min="0" max="80" value="40" step="2" />
-            <div class="sim-value-display" id="co2-val">40 Gt CO₂/yr</div>
-          </div>
-          <div class="sim-control-group">
-            <label for="sim-timeframe">Simulation Timeframe:</label>
-            <select id="sim-timeframe">
-              <option value="20">20 Years (methane dominates)</option>
-              <option value="50">50 Years</option>
-              <option value="100" selected>100 Years</option>
-              <option value="200">200 Years (CO₂ dominates)</option>
-            </select>
-          </div>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🌍</span>
+                <h2>EcoLife Hub</h2>
+            </div>
+            <div class="nav-links">
+                <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="#crisis-overview"><i class="fas fa-exclamation-triangle"></i> Crisis</a>
+                <a href="#permafrost-map"><i class="fas fa-map"></i> Map</a>
+                <a href="#methane-simulator"><i class="fas fa-chart-line"></i> Simulator</a>
+                <a href="#community-impact"><i class="fas fa-users"></i> Impact</a>
+                <a href="#action-plan"><i class="fas fa-fist-raised"></i> Action</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-      </div>
+    </nav>
 
-      <div class="card">
-        <h3>Radiative Forcing Over Time</h3>
-        <div class="chart-wrapper">
-          <canvas id="sim-chart"></canvas>
+    <!-- Hero Section -->
+    <header class="hero-section" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="crisis-badge">
+                <i class="fas fa-exclamation-triangle pulse-icon"></i>
+                <span>LEVEL 3 EMERGENCY</span>
+            </div>
+            <h1 class="hero-title">
+                Permafrost Thaw &amp;
+                <span class="gradient-text">Methane Time Bomb</span>
+            </h1>
+            <p class="hero-subtitle">
+                1,500 billion tonnes of organic carbon locked in permafrost — more than twice the carbon currently in the atmosphere.
+                As temperatures rise, this frozen time bomb is ticking faster.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1500">0</span>
+                    <span class="stat-unit">Gt Carbon</span>
+                    <span class="stat-label">Locked in Permafrost</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="80">0</span>
+                    <span class="stat-unit">× Potency</span>
+                    <span class="stat-label">Methane vs CO₂ (20yr)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="25">0</span>
+                    <span class="stat-unit">% Area</span>
+                    <span class="stat-label">Northern Hemisphere Permafrost</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-unit">Million</span>
+                    <span class="stat-label">People at Risk</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#crisis-overview" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explore the Crisis</a>
+                <a href="#action-plan" class="btn btn-secondary"><i class="fas fa-hand-fist"></i> Take Action</a>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <div class="sim-insight" id="sim-insight">
-      <strong>💡 Key Insight:</strong>
-      <span id="sim-insight-text">Adjust the sliders to see how methane and CO₂ compare as warming agents.</span>
-    </div>
-
-    <!-- Gas Comparison Cards -->
-    <div class="gas-compare">
-      <div class="card gas-card methane">
-        <div class="gas-icon">💨</div>
-        <h3>Methane (CH₄)</h3>
-        <div class="gas-value" id="gwp-20yr">×80</div>
-        <p>Global Warming Potential<br />(20-year horizon)</p>
-        <div style="margin-top: 12px; font-size: 0.88rem; color: var(--text-secondary);">
-          CO₂ equivalent: <strong id="co2-equivalent">8.0 Gt CO₂-eq (20yr)</strong>
+        <div class="scroll-indicator">
+            <div class="mouse"><div class="wheel"></div></div>
+            <span>Scroll to explore</span>
         </div>
-      </div>
-      <div class="card gas-card co2">
-        <div class="gas-icon">🏭</div>
-        <h3>Carbon Dioxide (CO₂)</h3>
-        <div class="gas-value" id="gwp-100yr">×1</div>
-        <p>Baseline GWP<br />(persists for centuries)</p>
-        <div style="margin-top: 12px; font-size: 0.88rem; color: var(--text-secondary);">
-          Atmospheric lifetime: <strong>300 – 1,000 years</strong>
+    </header>
+
+    <main class="main-content">
+        <!-- Crisis Overview Section -->
+        <section class="section crisis-overview" id="crisis-overview">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-radiation"></i> Crisis Overview</span>
+                <h2 class="section-title">The Permafrost Methane Feedback Loop</h2>
+                <p class="section-subtitle">A self-reinforcing cycle that could accelerate global warming beyond our control</p>
+            </div>
+
+            <div class="feedback-loop-container">
+                <div class="feedback-loop-visual" id="feedbackLoop">
+                    <div class="loop-center">
+                        <i class="fas fa-sync-alt spinning"></i>
+                        <span>Feedback Loop</span>
+                    </div>
+                    <div class="loop-node node-1" data-step="1">
+                        <div class="node-icon"><i class="fas fa-temperature-high"></i></div>
+                        <div class="node-label">Global Temperatures Rise</div>
+                    </div>
+                    <div class="loop-node node-2" data-step="2">
+                        <div class="node-icon"><i class="fas fa-snowflake"></i></div>
+                        <div class="node-label">Permafrost Thaws</div>
+                    </div>
+                    <div class="loop-node node-3" data-step="3">
+                        <div class="node-icon"><i class="fas fa-bacteria"></i></div>
+                        <div class="node-label">Microbes Decompose Organic Matter</div>
+                    </div>
+                    <div class="loop-node node-4" data-step="4">
+                        <div class="node-icon"><i class="fas fa-cloud"></i></div>
+                        <div class="node-label">CH₄ &amp; CO₂ Released</div>
+                    </div>
+                    <div class="loop-node node-5" data-step="5">
+                        <div class="node-icon"><i class="fas fa-fire"></i></div>
+                        <div class="node-label">Greenhouse Effect Intensifies</div>
+                    </div>
+                    <svg class="loop-arrows" viewBox="0 0 400 400">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b35"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="crisis-cards">
+                <div class="crisis-card">
+                    <div class="card-icon"><i class="fas fa-thermometer-full"></i></div>
+                    <h3>Arctic Warming</h3>
+                    <p>The Arctic is warming <strong>4× faster</strong> than the global average. Permafrost temperatures have increased by 0.3–1°C per decade since 1980.</p>
+                    <div class="card-stat">
+                        <span class="stat-value">+4°C</span>
+                        <span class="stat-desc">above pre-industrial levels in some Arctic regions</span>
+                    </div>
+                </div>
+                <div class="crisis-card">
+                    <div class="card-icon"><i class="fas fa-mountain"></i></div>
+                    <h3>Ground Collapse</h3>
+                    <p>Thermokarst formation is creating sinkholes, destabilizing infrastructure, and releasing trapped ancient carbon at unprecedented rates.</p>
+                    <div class="card-stat">
+                        <span class="stat-value">40%</span>
+                        <span class="stat-desc">of Arctic infrastructure at risk by 2050</span>
+                    </div>
+                </div>
+                <div class="crisis-card">
+                    <div class="card-icon"><i class="fas fa-virus"></i></div>
+                    <h3>Ancient Pathogens</h3>
+                    <p>Thawing permafrost could release dormant pathogens — in 2016, anthrax from a 75-year-old reindeer carcass killed a child in Yamal, Russia.</p>
+                    <div class="card-stat">
+                        <span class="stat-value">Millions</span>
+                        <span class="stat-desc">of years of frozen microbes now awakening</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Permafrost Retreat Map -->
+        <section class="section permafrost-map-section" id="permafrost-map">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-map-marked-alt"></i> Interactive Map</span>
+                <h2 class="section-title">Permafrost Retreat Projections (2025–2075)</h2>
+                <p class="section-subtitle">Visualize how permafrost boundaries shift under different warming scenarios</p>
+            </div>
+
+            <div class="map-container">
+                <div class="map-controls">
+                    <div class="control-group">
+                        <label for="scenarioSelect">Warming Scenario:</label>
+                        <select id="scenarioSelect">
+                            <option value="low">Low (+1.5°C by 2100)</option>
+                            <option value="moderate" selected>Moderate (+2.5°C by 2100)</option>
+                            <option value="high">High (+4.0°C by 2100)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="yearSlider">Year: <span id="yearDisplay">2025</span></label>
+                        <input type="range" id="yearSlider" min="2025" max="2075" value="2025" step="5">
+                    </div>
+                    <div class="control-group map-buttons">
+                        <button class="btn btn-sm btn-play" id="playBtn"><i class="fas fa-play"></i> Play</button>
+                        <button class="btn btn-sm btn-pause" id="pauseBtn" disabled><i class="fas fa-pause"></i> Pause</button>
+                        <button class="btn btn-sm btn-reset" id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                    </div>
+                </div>
+                <div class="map-canvas-wrapper">
+                    <canvas id="permafrostMap" width="900" height="500"></canvas>
+                    <div class="map-legend">
+                        <h4>Legend</h4>
+                        <div class="legend-item"><span class="legend-color" style="background:#1a3a5c"></span> Continuous Permafrost</div>
+                        <div class="legend-item"><span class="legend-color" style="background:#3a7ca5"></span> Discontinuous Permafrost</div>
+                        <div class="legend-item"><span class="legend-color" style="background:#81c3d7"></span> Sporadic Permafrost</div>
+                        <div class="legend-item"><span class="legend-color" style="background:#d4a574"></span> Thawed Region</div>
+                        <div class="legend-item"><span class="legend-color" style="background:rgba(255,107,53,0.6)"></span> Methane Hotspot</div>
+                    </div>
+                </div>
+                <div class="map-info-panel" id="mapInfoPanel">
+                    <h4><i class="fas fa-info-circle"></i> Region Details</h4>
+                    <p>Hover over a region on the map to view detailed information about permafrost conditions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methane vs CO₂ Warming Simulator -->
+        <section class="section methane-simulator" id="methane-simulator">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-chart-area"></i> Warming Simulator</span>
+                <h2 class="section-title">Methane vs CO₂ — Heat-Trapping Comparison</h2>
+                <p class="section-subtitle">Understand why methane is a climate emergency accelerant</p>
+            </div>
+
+            <div class="simulator-container">
+                <div class="simulator-controls">
+                    <div class="control-group">
+                        <label for="methaneRate">
+                            <i class="fas fa-cloud-meatball"></i> Methane Release Rate
+                            <span class="control-value" id="methaneRateValue">50 Tg/yr</span>
+                        </label>
+                        <input type="range" id="methaneRate" min="10" max="200" value="50" step="10">
+                        <div class="range-labels">
+                            <span>10 Tg/yr</span>
+                            <span>200 Tg/yr</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="co2Emissions">
+                            <i class="fas fa-industry"></i> CO₂ Emissions
+                            <span class="control-value" id="co2EmissionsValue">40 Gt/yr</span>
+                        </label>
+                        <input type="range" id="co2Emissions" min="20" max="80" value="40" step="5">
+                        <div class="range-labels">
+                            <span>20 Gt/yr</span>
+                            <span>80 Gt/yr</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="timeframe">
+                            <i class="fas fa-clock"></i> Timeframe
+                            <span class="control-value" id="timeframeValue">50 years</span>
+                        </label>
+                        <input type="range" id="timeframe" min="20" max="100" value="50" step="10">
+                        <div class="range-labels">
+                            <span>20 years</span>
+                            <span>100 years</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-simulate" id="simulateBtn">
+                        <i class="fas fa-play-circle"></i> Run Simulation
+                    </button>
+                </div>
+                <div class="simulator-charts">
+                    <div class="chart-container">
+                        <h3><i class="fas fa-temperature-high"></i> Warming Impact Over Time</h3>
+                        <canvas id="warmingChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3><i class="fas fa-balance-scale"></i> Cumulative Radiative Forcing</h3>
+                        <canvas id="forcingChart"></canvas>
+                    </div>
+                </div>
+                <div class="simulator-insights" id="simulatorInsights">
+                    <div class="insight-card warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <h4>Critical Warning</h4>
+                            <p>At current release rates, permafrost methane could add <strong>0.3–0.5°C</strong> additional warming by 2100 — enough to cross tipping points.</p>
+                        </div>
+                    </div>
+                    <div class="insight-card info">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <h4>Key Insight</h4>
+                            <p>Methane is <strong>80× more potent</strong> than CO₂ over 20 years but breaks down faster. Reducing methane now buys critical time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Impact Section -->
+        <section class="section community-impact" id="community-impact">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-house-damage"></i> Community Impact</span>
+                <h2 class="section-title">Voices from the Front Lines</h2>
+                <p class="section-subtitle">Real people, real communities — facing the consequences of permafrost collapse</p>
+            </div>
+
+            <!-- Impact Timeline -->
+            <div class="impact-timeline">
+                <div class="timeline-item" data-year="2003">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2003</div>
+                        <h3>Shishmaref, Alaska</h3>
+                        <p>The Iñupiat village voted to relocate after permafrost thaw caused homes to collapse into the sea. Over 100 structures have been lost since the 1990s.</p>
+                        <div class="timeline-tag">Coastal Erosion</div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2016">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <h3>Yamal Peninsula — Anthrax Outbreak</h3>
+                        <p>A 75-year-old reindeer carcass thawed from permafrost, releasing anthrax. One child died, 72 people hospitalized, and 2,300 reindeer perished.</p>
+                        <div class="timeline-tag">Ancient Pathogen</div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2020">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h3>Norilsk, Russia — Fuel Spill</h3>
+                        <p>A fuel storage tank sank into thawed ground, spilling 21,000 tonnes of diesel into Arctic rivers — one of the worst environmental disasters in Russian history.</p>
+                        <div class="timeline-tag">Infrastructure Failure</div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-year="2023">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>Batagaika Crater, Siberia</h3>
+                        <p>The world's largest permafrost crater continues expanding at 10–30 meters per year, now over 1 km long. Known locally as the "Gateway to the Underworld."</p>
+                        <div class="timeline-tag">Thermokarst</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Voices -->
+            <div class="community-voices">
+                <h3 class="subsection-title"><i class="fas fa-bullhorn"></i> Indigenous Community Voices</h3>
+                <div class="voices-grid">
+                    <div class="voice-card">
+                        <div class="voice-avatar"><i class="fas fa-user-circle"></i></div>
+                        <blockquote>"The land is no longer solid beneath our feet. Our ancestors walked this ground for thousands of years. Now it swallows our homes."</blockquote>
+                        <cite>— Elder from Shishmaref, Alaska</cite>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-avatar"><i class="fas fa-user-circle"></i></div>
+                        <blockquote>"We heard the earth breathe — bubbling methane from lakes that never existed before. The tundra is alive in ways it shouldn't be."</blockquote>
+                        <cite>— Nenets herder, Yamal Peninsula</cite>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-avatar"><i class="fas fa-user-circle"></i></div>
+                        <blockquote>"Our traditional food storage cellars, dug into permafrost by our grandparents, are collapsing. We are losing our way of life."</blockquote>
+                        <cite>— Yup'ik community member, Western Alaska</cite>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Damage Stats -->
+            <div class="infrastructure-stats">
+                <h3 class="subsection-title"><i class="fas fa-hard-hat"></i> Infrastructure at Risk</h3>
+                <div class="infra-grid">
+                    <div class="infra-card">
+                        <div class="infra-icon"><i class="fas fa-road"></i></div>
+                        <div class="infra-value">40,000 km</div>
+                        <div class="infra-label">Roads Threatened</div>
+                        <div class="infra-bar"><div class="infra-fill" style="width:75%"></div></div>
+                    </div>
+                    <div class="infra-card">
+                        <div class="infra-icon"><i class="fas fa-building"></i></div>
+                        <div class="infra-value">35,000+</div>
+                        <div class="infra-label">Buildings at Risk</div>
+                        <div class="infra-bar"><div class="infra-fill" style="width:65%"></div></div>
+                    </div>
+                    <div class="infra-card">
+                        <div class="infra-icon"><i class="fas fa-oil-can"></i></div>
+                        <div class="infra-value">$84B</div>
+                        <div class="infra-label">Estimated Damage Cost</div>
+                        <div class="infra-bar"><div class="infra-fill" style="width:85%"></div></div>
+                    </div>
+                    <div class="infra-card">
+                        <div class="infra-icon"><i class="fas fa-train"></i></div>
+                        <div class="infra-value">1,200 km</div>
+                        <div class="infra-label">Rail Lines Affected</div>
+                        <div class="infra-bar"><div class="infra-fill" style="width:55%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Plan Section -->
+        <section class="section action-plan" id="action-plan">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-fist-raised"></i> Action Plan</span>
+                <h2 class="section-title">6-Point Emergency Strategy</h2>
+                <p class="section-subtitle">Concrete steps humanity must take to defuse the methane time bomb</p>
+            </div>
+
+            <div class="action-grid">
+                <div class="action-card" data-action="1">
+                    <div class="action-number">01</div>
+                    <div class="action-icon"><i class="fas fa-horse"></i></div>
+                    <h3>Mammoth Steppe Restoration</h3>
+                    <p>Restore grazing ecosystems in Siberia to compact snow and keep permafrost frozen. Projects like Pleistocene Park demonstrate that large herbivores can lower ground temperatures by 4°C.</p>
+                    <div class="action-status">
+                        <span class="status-badge active">In Progress</span>
+                        <span class="status-location"><i class="fas fa-map-pin"></i> Siberia, Russia</span>
+                    </div>
+                </div>
+                <div class="action-card" data-action="2">
+                    <div class="action-number">02</div>
+                    <div class="action-icon"><i class="fas fa-ban"></i></div>
+                    <h3>Fossil Fuel Phase-Out</h3>
+                    <p>Accelerate the global transition away from fossil fuels to limit warming to 1.5°C. Every 0.1°C matters — it represents millions of square kilometers of permafrost saved.</p>
+                    <div class="action-status">
+                        <span class="status-badge urgent">Urgent</span>
+                        <span class="status-location"><i class="fas fa-globe"></i> Global</span>
+                    </div>
+                </div>
+                <div class="action-card" data-action="3">
+                    <div class="action-number">03</div>
+                    <div class="action-icon"><i class="fas fa-satellite-dish"></i></div>
+                    <h3>Arctic Monitoring Network</h3>
+                    <p>Deploy comprehensive sensor networks across permafrost regions to detect early signs of thaw, methane seepage, and ground instability in real-time.</p>
+                    <div class="action-status">
+                        <span class="status-badge planning">Planning</span>
+                        <span class="status-location"><i class="fas fa-map-pin"></i> Circumpolar</span>
+                    </div>
+                </div>
+                <div class="action-card" data-action="4">
+                    <div class="action-number">04</div>
+                    <div class="action-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Community Resilience</h3>
+                    <p>Support indigenous and Arctic communities with relocation assistance, infrastructure adaptation, and preservation of traditional knowledge and cultural heritage.</p>
+                    <div class="action-status">
+                        <span class="status-badge active">In Progress</span>
+                        <span class="status-location"><i class="fas fa-map-pin"></i> Alaska, Canada, Russia</span>
+                    </div>
+                </div>
+                <div class="action-card" data-action="5">
+                    <div class="action-number">05</div>
+                    <div class="action-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Methane Capture Research</h3>
+                    <p>Fund research into methane oxidation technologies, biofilter systems, and methanotroph bacteria that can convert methane before it reaches the atmosphere.</p>
+                    <div class="action-status">
+                        <span class="status-badge research">Research</span>
+                        <span class="status-location"><i class="fas fa-globe"></i> Global Labs</span>
+                    </div>
+                </div>
+                <div class="action-card" data-action="6">
+                    <div class="action-number">06</div>
+                    <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Global Awareness Campaign</h3>
+                    <p>Launch worldwide education initiatives to raise awareness about the permafrost crisis, build political will, and mobilize citizens to demand urgent climate action.</p>
+                    <div class="action-status">
+                        <span class="status-badge urgent">Urgent</span>
+                        <span class="status-location"><i class="fas fa-globe"></i> Worldwide</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <div class="cta-content">
+                    <h3>The Clock is Ticking</h3>
+                    <p>Every tonne of methane released makes it harder to reverse. Join the fight to keep the permafrost frozen.</p>
+                    <div class="cta-buttons">
+                        <a href="../../index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+                        <a href="#crisis-overview" class="btn btn-secondary"><i class="fas fa-arrow-up"></i> Back to Top</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Learn More</h4>
+                <ul>
+                    <li><a href="#crisis-overview">Crisis Overview</a></li>
+                    <li><a href="#permafrost-map">Retreat Map</a></li>
+                    <li><a href="#methane-simulator">Methane Simulator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Related Issues</h4>
+                <ul>
+                    <li><a href="permafrost-thermokarst-expansion.html">Thermokarst Expansion</a></li>
+                    <li><a href="polar-albedo-feedback-loop.html">Polar Albedo Feedback</a></li>
+                    <li><a href="fire-regime-shifts.html">Fire Regime Shifts</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contribute</h4>
+                <p>Help us raise awareness about the permafrost methane crisis.</p>
+                <a href="../../index.html" class="btn btn-sm btn-primary">Get Involved</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ COMMUNITY IMPACT ═══════════════════ -->
-  <section class="section" id="community-section">
-    <div class="section-header">
-      <h2>Community &amp; Human Impact</h2>
-      <p>Arctic indigenous communities are on the frontlines — facing collapsing coastlines, sinking homes, and cultural erasure as the ground beneath them disappears.</p>
-    </div>
-
-    <div class="community-stats">
-      <div class="community-stat">
-        <div class="stat-number">4M+</div>
-        <div class="stat-label">People Living on Permafrost</div>
-      </div>
-      <div class="community-stat">
-        <div class="stat-number">70%</div>
-        <div class="stat-label">Arctic Infrastructure at Risk</div>
-      </div>
-      <div class="community-stat">
-        <div class="stat-number">$84B</div>
-        <div class="stat-label">Projected Damage by 2050</div>
-      </div>
-      <div class="community-stat">
-        <div class="stat-number">31</div>
-        <div class="stat-label">Communities Facing Relocation</div>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 48px; margin-bottom: 24px; text-align: center; color: var(--ice-blue);">Timeline of Impact</h3>
-
-    <div class="impact-timeline">
-      <div class="impact-event">
-        <h4>2003 — Shishmaref, Alaska</h4>
-        <p>Voted to relocate the entire village as thawing permafrost and coastal erosion left homes falling into the sea. The community of ~600 Iñupiat people faces cultural displacement alongside physical relocation.</p>
-      </div>
-      <div class="impact-event">
-        <h4>2011 — Norilsk Pipeline Collapse, Russia</h4>
-        <p>A major fuel pipeline built on permafrost ruptured as its foundation thawed, spilling 21,000 tons of diesel into the Ambarnaya River — one of the worst Arctic ecological disasters.</p>
-      </div>
-      <div class="impact-event">
-        <h4>2016 — Anthrax Outbreak, Yamal Peninsula</h4>
-        <p>A summer heatwave thawed a reindeer carcass buried in permafrost for 75 years, releasing anthrax spores. One child died and 2,300 reindeer perished. Ancient pathogens became reality, not theory.</p>
-      </div>
-      <div class="impact-event">
-        <h4>2020 — Batagaika Crater Expansion, Siberia</h4>
-        <p>The world's largest permafrost crater — over 1 km long — continued expanding as thermal erosion accelerated. Once called the "Gateway to the Underworld," it grows by 10+ meters per year.</p>
-      </div>
-      <div class="impact-event">
-        <h4>2024 — Trans-Alaska Pipeline Threat</h4>
-        <p>Engineers reported accelerating ground subsidence along the 1,300 km pipeline, threatening oil infrastructure valued at billions and requiring emergency stabilization measures.</p>
-      </div>
-      <div class="impact-event">
-        <h4>2025-2075 — Projected Future</h4>
-        <p>Under moderate warming, up to 70% of near-surface permafrost may thaw by 2075. Dozens of Arctic communities face forced relocation. Infrastructure damage could exceed $84 billion.</p>
-      </div>
-    </div>
-
-    <!-- Stories from Arctic Communities -->
-    <h3 style="margin-top: 48px; margin-bottom: 24px; text-align: center; color: var(--ice-blue);">Voices from the Arctic</h3>
-
-    <div class="stories-grid">
-      <div class="card story-card">
-        <div class="story-location">Shishmaref, Alaska</div>
-        <h3>The Village Falling Into the Sea</h3>
-        <blockquote>"Our homes are sinking. The ground that held our ancestors for thousand of years is turning to mud beneath our feet."</blockquote>
-        <cite>— Iñupiat Elder, Shishmaref Village Council</cite>
-        <p style="margin-top: 12px; font-size: 0.88rem; color: var(--text-secondary);">
-          The 600-person community voted to relocate in 2016 at an estimated cost of $180 million — money that still hasn't come. Houses continue falling into the Chukchi Sea.
-        </p>
-      </div>
-      <div class="card story-card">
-        <div class="story-location">Yakutsk, Siberia</div>
-        <h3>A City Built on Melting Ground</h3>
-        <blockquote>"Buildings tilt, roads buckle. The city of 300,000 people watches its foundations dissolve in slow motion."</blockquote>
-        <cite>— Yakutsk Municipal Report, 2024</cite>
-        <p style="margin-top: 12px; font-size: 0.88rem; color: var(--text-secondary);">
-          Yakutsk, the world's largest city on continuous permafrost, has seen building damage increase 300% since 2000. Thousands of structures need emergency reinforcement.
-        </p>
-      </div>
-      <div class="card story-card">
-        <div class="story-location">Tuktoyaktuk, Canada</div>
-        <h3>Disappearing Coastlines</h3>
-        <blockquote>"We've lost over 100 meters of coastline in my lifetime. Our graveyard washed out to sea."</blockquote>
-        <cite>— Inuvialuit Community Member</cite>
-        <p style="margin-top: 12px; font-size: 0.88rem; color: var(--text-secondary);">
-          The Inuvialuit hamlet loses an average of 2 meters of coastline per year. Cultural sites, burial grounds, and traditional harvesting areas are vanishing.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ ACTION PLAN ═══════════════════ -->
-  <section class="section" id="action-section">
-    <div class="section-header">
-      <h2>Action Plan: Defusing the Time Bomb</h2>
-      <p>Concrete strategies to slow permafrost thaw and mitigate the methane feedback loop before we cross irreversible tipping points.</p>
-    </div>
-
-    <div class="actions-grid">
-      <div class="card action-card">
-        <div class="action-number">01</div>
-        <h3>🦣 Restore the Mammoth Steppe</h3>
-        <p>Reintroduce large herbivores (bison, musk ox, wild horses) to trample snow and expose the frozen ground to extreme cold air in winter — keeping the permafrost frozen longer.</p>
-        <ul>
-          <li>Pleistocene Park experiment in Siberia shows <strong>ground temperatures 15 °C colder</strong> in grazed areas</li>
-          <li>Scale to 1 million km² of Arctic grassland by 2050</li>
-          <li>Support Nikita Zimov's rewilding initiatives</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-danger" style="width: 8%;"></div></div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EcoLife Environment &amp; Animal Safety Hub. All rights reserved.</p>
         </div>
-      </div>
+    </footer>
 
-      <div class="card action-card">
-        <div class="action-number">02</div>
-        <h3>⚡ Rapid Fossil Fuel Phase-Out</h3>
-        <p>Eliminate the root cause. Every fraction of a degree matters — the difference between +1.5 °C and +2.0 °C could determine whether the permafrost tipping point is crossed.</p>
-        <ul>
-          <li>Triple renewable energy capacity by 2030</li>
-          <li>End all new fossil fuel exploration in Arctic regions</li>
-          <li>Carbon tax of <strong>$150/ton</strong> to fund transition</li>
-          <li>Electrify heating in permafrost regions</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-warning" style="width: 22%;"></div></div>
-        </div>
-      </div>
-
-      <div class="card action-card">
-        <div class="action-number">03</div>
-        <h3>📡 Arctic Monitoring Network</h3>
-        <p>Deploy a comprehensive sensor network across the permafrost zone to detect methane hotspots, ground temperature anomalies, and structural instabilities in real-time.</p>
-        <ul>
-          <li>10,000 ground-temperature sensors across Arctic</li>
-          <li>Satellite methane detection (e.g., MethaneSAT)</li>
-          <li>Early-warning systems for communities</li>
-          <li>Open-data platform for researchers</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-warning" style="width: 35%;"></div></div>
-        </div>
-      </div>
-
-      <div class="card action-card">
-        <div class="action-number">04</div>
-        <h3>🏘️ Community Resilience &amp; Relocation</h3>
-        <p>Fund the planned relocation of at-risk Arctic communities and build climate-resilient infrastructure for those who remain.</p>
-        <ul>
-          <li>$10B global Arctic relocation fund</li>
-          <li>Culturally sensitive relocation planning</li>
-          <li>Thermosyphon installation to stabilize buildings</li>
-          <li>Indigenous knowledge integration in planning</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-danger" style="width: 12%;"></div></div>
-        </div>
-      </div>
-
-      <div class="card action-card">
-        <div class="action-number">05</div>
-        <h3>🧪 Methane Capture Research</h3>
-        <p>Invest in breakthrough technologies to capture methane at emission sites — from thermokarst lakes, thawing slopes, and abandoned infrastructure.</p>
-        <ul>
-          <li>Methanotrophic bacteria enhancement</li>
-          <li>Methane oxidation catalysts for hotspots</li>
-          <li>Seal abandoned wells in Arctic regions</li>
-          <li>Fund university-led capture research</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-danger" style="width: 5%;"></div></div>
-        </div>
-      </div>
-
-      <div class="card action-card">
-        <div class="action-number">06</div>
-        <h3>📚 Global Awareness Campaign</h3>
-        <p>Most people have never heard of the permafrost methane emergency. Launch a global education initiative to make this invisible threat visible.</p>
-        <ul>
-          <li>School curriculum integration worldwide</li>
-          <li>Documentary series on Arctic communities</li>
-          <li>Citizen science programs for data collection</li>
-          <li>Annual "Permafrost Day" awareness event</li>
-        </ul>
-        <div class="action-progress">
-          <label>Current Progress</label>
-          <div class="progress-track"><div class="progress-fill fill-warning" style="width: 18%;"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta-banner">
-      <h3>We Must Act Before the Tipping Point</h3>
-      <p>The permafrost carbon bomb is not a future threat — it is detonating now. Every year of delay makes the feedback loop harder to break.</p>
-      <div class="cta-buttons">
-        <a href="../../index.html" class="btn btn-primary">🌍 Explore More Crises</a>
-        <a href="https://github.com/motalib-code/Environment_Animal_Safety_Hub" target="_blank" class="btn btn-secondary">⭐ Star on GitHub</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div>
-        <h4>About This Page</h4>
-        <p style="font-size: 0.88rem; color: var(--text-secondary);">
-          Created in response to Issue <strong>#3128</strong> — Global Crisis Alert: Permafrost Thaw &amp; The Methane Time Bomb. Part of the EcoLife Environment &amp; Animal Safety Hub.
-        </p>
-      </div>
-      <div>
-        <h4>Related Topics</h4>
-        <ul>
-          <li><a href="permafrost-thermokarst-expansion.html">Permafrost Thermokarst Expansion</a></li>
-          <li><a href="ice-dependent-algal-bloom-collapse.html">Ice-Dependent Algal Bloom Collapse</a></li>
-          <li><a href="wetland-methane-flux-variability.html">Wetland Methane Flux Variability</a></li>
-          <li><a href="climate-awareness.html">Climate Awareness</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contribute</h4>
-        <p style="font-size: 0.88rem; color: var(--text-secondary);">
-          Help us visualize this invisible, subterranean threat before the tipping point is crossed.
-        </p>
-        <a href="https://github.com/motalib-code/Environment_Animal_Safety_Hub/blob/main/CONTRIBUTING.md" class="btn btn-secondary" style="margin-top: 10px;" target="_blank">Get Involved</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 EcoLife Environment &amp; Animal Safety Hub. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="../permafrost-methane-crisis.js"></script>
+    <script src="../permafrost-methane-crisis.js"></script>
 </body>
 </html>

@@ -68,6 +68,7 @@
   <link href="css/components/donation.css" rel="stylesheet" />
   <link href="css/components/noise-crisis-alert.css" rel="stylesheet" />
   <link href="css/components/indigenous-crisis-alert.css" rel="stylesheet" />
+  <link href="css/components/permafrost-crisis-alert.css" rel="stylesheet" />
   <link href="css/global/accessibility.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -171,6 +172,28 @@
           <i class="fas fa-eye"></i> View Crisis Details
         </a>
         <button aria-label="Close crisis alert" class="indigenous-crisis-dismiss" onclick="closeIndigenousCrisisAlert()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Permafrost Methane Crisis Alert Banner -->
+  <div class="permafrost-crisis-alert-banner" id="permafrost-crisis-alert-banner" style="display: none;">
+    <div class="permafrost-crisis-alert-content">
+      <div class="permafrost-crisis-icon">
+        <i class="fas fa-snowflake permafrost-pulse"></i>
+      </div>
+      <div class="permafrost-crisis-text">
+        <div class="permafrost-crisis-level">LEVEL 3 EMERGENCY</div>
+        <div class="permafrost-crisis-title">Permafrost Thaw &amp; Methane Time Bomb</div>
+        <div class="permafrost-crisis-action">1,500 Gt carbon at risk — methane feedback loop accelerating</div>
+      </div>
+      <div class="permafrost-crisis-actions">
+        <a class="permafrost-crisis-btn" href="pages/environment/permafrost-methane-crisis.html">
+          <i class="fas fa-eye"></i> View Crisis Details
+        </a>
+        <button aria-label="Close crisis alert" class="permafrost-crisis-close" onclick="closePermafrostCrisisAlert()">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -564,6 +587,22 @@
                   <i class="fa-solid fa-arrow-right">
                   </i>
                 </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Permafrost Methane Crisis -->
+          <article class="service-card" data-tilt="">
+            <div class="service-card-inner">
+              <div class="service-card-front">
+                <div class="service-icon-3d">
+                  <i class="fa-solid fa-snowflake" style="font-size:3rem;color:#06b6d4;"></i>
+                </div>
+                <h3>Permafrost Crisis <span class="crisis-urgent-text" style="color: #ff0000; font-size: 0.8rem; font-weight: 900; text-shadow: 0 0 10px #ff0000;">[LEVEL 3 CRISIS]</span></h3>
+                <p>Permafrost thaw is releasing methane — a greenhouse gas 80× more potent than CO₂. <strong style="color: #ff4500; background: rgba(255,69,0,0.1); padding: 2px 6px; border-radius: 4px;">URGENT: 1,500 Gt carbon at risk</strong></p>
+              </div>
+              <div class="service-card-back">
+                <a class="service-link" href="pages/environment/permafrost-methane-crisis.html" style="background: linear-gradient(45deg, #06b6d4, #3b82f6); color: white; font-weight: bold; text-shadow: 0 0 10px rgba(0,0,0,0.5);" title="View Level 3 Crisis Details">❄️ Crisis Level 3 <i class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </article>
